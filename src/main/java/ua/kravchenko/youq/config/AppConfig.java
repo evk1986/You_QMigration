@@ -30,7 +30,7 @@ public class AppConfig implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.setScheduler(taskScheduler());
-       /* taskRegistrar.addTriggerTask(
+        /* taskRegistrar.addTriggerTask(
                 new Runnable() {
                     public void run() {
                         myTask().reportCurrentTime();

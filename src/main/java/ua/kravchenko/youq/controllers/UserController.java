@@ -31,6 +31,13 @@ public class UserController {
             return "user";
         }
 
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    public String getMainView(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "index";
+    }
+
         @RequestMapping(value = "/test", method = RequestMethod.POST)
         public String postUserView(@ModelAttribute(value = "user")
                 User user,

@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head lang="en">
+
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<div class="container" th:fragment="add_new_ds">
+    <div class="w3-row-padding" style="">
+        <div class="w3-card-24 w3-margin w3-padding">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new
+                        discount-system</h3>
+                </div>
+                <!--/*@thymesVar id="ds" type="ua.kravchenko.youq.entity.Ds"*/-->
+                <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+
+                <form class="form-horizontal" name="save_new_ds"
+                      th:action="@{/ds/save_ds}" th:object="${ds}"
+                      th:method="PUT">
+
+                    <div class="row">
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td><label for="name">Name:</label></td>
+                                    <td><input type="text" id="name" class="form-control input-sm"
+                                               th:field="*{name}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="title">Title:</label></td>
+                                    <td><input type="text" id="title" class="form-control input-sm"
+                                               th:field="*{title}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="about">About:</label></td>
+                                    <td><textarea rows="10" type="text" id="about" class="form-control input-sm"
+                                                  th:field="*{about}"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="image_name">Image:</label></td>
+                                    <td><input type="text" id="image_name"
+                                               class="form-control input-sm"
+                                               th:field="*{img}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="color_bg">Background Color:</label></td>
+                                    <td><input type="text" id="color_bg"
+                                               class="form-control input-sm"
+                                               th:field="*{colorBg}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="color_font">Color font:</label></td>
+
+                                    <td><input type="text" id="color_font"
+                                               class="form-control input-sm"
+                                               th:field="*{colorFont}"/></td>
+                                </tr>
+                                <tr>
+
+                                    <td><label for="code_format">Code format:</label></td>
+                                    <td>
+                                        <select id="code_format" th:field="*{codeFormat}">
+                                            <option th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
+                                                    th:value="${format}"
+                                                    th:text="${format.getDisplayedName()}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="countrys">Country:</label>
+                                    <td id="countrys">
+                                        <select th:field="*{country}">
+                                            <option th:each="country : ${countrys}"
+                                                    th:value="${country.getId()}"
+                                                    th:text="${country.getCountryName()}">
+                                            </option>
+                                        </select>
+                                    </td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="tel_name">Tel name:</label></td>
+                                    <td><input type="text" id="tel_name" class="form-control input-sm"
+                                               th:field="*{telName}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="tel_number">Tel number:</label></td>
+                                    <td><input type="text" id="tel_number"
+                                               class="form-control input-sm"
+                                               th:field="*{telNumber}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="url">Url:</label></td>
+                                    <td><input type="text" id="url"
+                                               class="form-control input-sm"
+                                               th:field="*{url}"/>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <div class="col-sm-6">
+                                <input type="submit" value="Save"
+                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                            </div>
+                            <div class="col-sm-6">
+                            <input href="#" type="reset" value="Cancel"
+                                   class="w3-btn w3-hover-red w3-white w3-border center-block"/>
+                        </div>
+                    </div>
+
+            </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

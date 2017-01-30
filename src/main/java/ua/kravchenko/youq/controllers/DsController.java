@@ -44,7 +44,7 @@ public class DsController {
         System.out.println(countrys);
         model.addAttribute("ds", ds);
         model.addAttribute("countrys", countrys);
-        return "addNewDs";
+        return "addNewDsV1";
     }
 
     @RequestMapping(value = "/save_ds", method = RequestMethod.PUT)
