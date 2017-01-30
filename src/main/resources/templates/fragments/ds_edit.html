@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div class="container" th:fragment="add_new_ds">
+<div class="container" th:fragment="ds_edit">
     <div class="w3-row-padding" style="">
         <div class="w3-card-24 w3-margin w3-padding">
             <div class="panel">
@@ -30,7 +30,7 @@
                                 <tr>
                                     <td><label for="name">Name:</label></td>
                                     <td><input type="text" id="name" class="form-control input-sm"
-                                            th:placeholder="${ds.name}"   th:field="*{name}"/></td>
+                                               th:placeholder="${ds.name}"   th:field="*{name}"/></td>
                                 </tr>
                                 <tr>
                                     <td><label for="title">Title:</label></td>
@@ -82,7 +82,7 @@
                                             <option th:each="country : ${countrys}"
                                                     th:value="${country.getId()}"
                                                     th:text="${country.getCountryName()}"
-                                                   >
+                                                    th:placeholder="${ds.country.countryName}">
 
                                             </option>
                                         </select>

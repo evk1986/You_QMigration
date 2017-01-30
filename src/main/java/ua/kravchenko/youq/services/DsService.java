@@ -28,4 +28,5 @@ public interface DsService {
 
     Revision getlastObjectRevision(Long id);
 
+    void delete(Long id);
 }

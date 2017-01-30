@@ -70,4 +70,9 @@ public class DsServiceImpl implements DsService {
     public Revision getlastObjectRevision(Long id) {
         return null;
     }
+
+    @Override
+    public void delete(Long id) {
+        repository.delete(id);
+    }
 }

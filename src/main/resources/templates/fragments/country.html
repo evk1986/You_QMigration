@@ -39,7 +39,8 @@
 
 </head>
 <body>
-<div class="container">
+<!--add new country-->
+<div class="container" th:fragment="add_new_country">
     <div class="w3-row-padding" style="margin-top: 100px">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
             <div class="w3-card-24 w3-border w3-margin">
@@ -48,8 +49,6 @@
                         <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Edit profile</h3>
                     </div>
                     <!--/*@thymesVar id="country" type="ua.kravchenko.youq.entity.Country"*/-->
-
-
                     <form class="panel-body form-horizontal" name="save_new_ds"
                           th:action="@{/country/add_new_country}" th:object="${country}"
                           th:method="PUT">

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.kravchenko.youq.entity.Country;
@@ -13,6 +14,7 @@ import ua.kravchenko.youq.services.CountryService;
 import ua.kravchenko.youq.services.DsService;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -44,7 +46,7 @@ public class DsController {
         System.out.println(countrys);
         model.addAttribute("ds", ds);
         model.addAttribute("countrys", countrys);
-        return "addNewDsV1";
+        return "ds_add_new";
     }
 
     @RequestMapping(value = "/save_ds", method = RequestMethod.PUT)
@@ -71,6 +73,49 @@ public class DsController {
         dsDao.setTelName(ds.getTelName());
         dsService.save(dsDao);
         return "redirect:/ds/succes_adding_ds";
+    }
+
+    @RequestMapping(value = "/administrate_ds", method = RequestMethod.GET)
+    public String deleteCountry(Model model) {
+        List<Ds> ds = dsService.findAll();
+        model.addAttribute("ds", ds);
+        return "ds_administrate";
+    }
+
+    @RequestMapping(value = "/administrate_ds/info_ds/{name}", method = RequestMethod.GET)
+    public String infoViewDs(Model model, @PathVariable("name") String name, HttpServletRequest req) {
+        Ds ds = dsService.findByName(name);
+        List<Country> countrys = countryService.findAll();
+        System.out.println(countrys);
+        model.addAttribute("ds", ds);
+        model.addAttribute("countrys", countrys);
+        return "ds_info";
+    }
+
+    @RequestMapping(value = "/administrate_ds/edit/{name}", method = RequestMethod.GET)
+    public String editDsView(Model model, @PathVariable("name") String name, HttpServletRequest req) {
+        Ds ds = dsService.findByName(name);
+        List<Country> countrys = countryService.findAll();
+        System.out.println(countrys);
+        model.addAttribute("ds", ds);
+        model.addAttribute("countrys", countrys);
+        return "ds_edit";
+    }
+
+    @RequestMapping(value = "/ds_edit", method = RequestMethod.GET)
+    public String fetEditViewDs(Model model) {
+        Ds ds = new Ds();
+        List<Country> countries = countryService.findAll();
+        System.out.println(countries);
+        model.addAttribute("ds", ds);
+        model.addAttribute("countrys", countries);
+        return "ds_edit";
+    }
+
+    @RequestMapping(value = "/administrate_ds/delete/{id}", method = RequestMethod.POST)
+    public String deleteDs(Model model, @PathVariable("id") Long id,HttpServletRequest req) {
+        dsService.delete(id);
+        return "redirect:"+ req.getContextPath() + "/ds/administrate_ds";
     }
 }
 

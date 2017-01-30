@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ua.kravchenko.youq.entity.Country;
 import ua.kravchenko.youq.services.CountryService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -21,15 +20,24 @@ public class CountryController {
     @Autowired
     CountryService countryService;
 
+    /**
+     * Gets the view "add new country"
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add_new_country", method = RequestMethod.GET)
     public String getViewAddNewCountry(Model model) {
         Country country = new Country();
         model.addAttribute("country", country);
-        return "addnewCountry";
-
-
+        return "country_add_new";
     }
 
+    /**
+     * Add new country [Post method]
+     * @param model
+     * @param country
+     * @return
+     */
     @RequestMapping(value = "/add_new_country", method = RequestMethod.PUT)
     public String addNewCountry(Model model, @ModelAttribute(value = "country") Country country) {
         System.out.println(country.toString());
@@ -47,17 +55,17 @@ public class CountryController {
         return "succesAddingDs";
     }
 
+    /**
+     * Returns the list of the countrys. registred in system
+     * @param model
+     * @return String page
+     */
     @RequestMapping(value = "/administrate_countries", method = RequestMethod.GET)
     public String deleteCountry(Model model) {
         List<Country> countrys = countryService.findAll();
         model.addAttribute("countrys", countrys);
-        return "administrateCountrys";
+        return "countrys_administrate";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteCountry(@PathParam(value = "id") int id, Model model) {
-        countryService.delete(id);
-        model.addAttribute("countrys", countryService.findAll());
-        return "redirect:/administrateCountrys";
-    }
+
 }
