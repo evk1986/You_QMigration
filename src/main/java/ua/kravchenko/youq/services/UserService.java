@@ -1,6 +1,7 @@
 package ua.kravchenko.youq.services;
 
 import org.springframework.data.history.Revision;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.annotation.Transactional;
 import ua.kravchenko.youq.entity.User;
 
@@ -12,7 +13,8 @@ import java.util.List;
  *
  * @author Egor
  */
-public interface UserService {
+
+public interface UserService extends UserDetailsService {
 
     @Transactional
     User save(User user);
@@ -27,6 +29,20 @@ public interface UserService {
     Revision getlastObjectRevision(Long id);
 
 
+    @Transactional
+    List<User> getAll();
+
+    @Transactional
+    User findById(Long id);
+
+
+ /*   @Transactional
+    void createPasswordResetTokenForUser(final User user, final String token);*/
+
+
+    @Transactional
+    void changeUserPassword(User user, String password);
+}
 /*
     @Transactional
     List<User> getAll();
@@ -36,4 +52,4 @@ public interface UserService {
 */
 
 
-}
+

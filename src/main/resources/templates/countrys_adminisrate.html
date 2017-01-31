@@ -1,103 +1,144 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head lang="en">
+<head>
+    <title>Minimal an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript" th:inline="javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <link href="css/style.css"
+          th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
+    <link href="css/font-awesome.css"
+          th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
 
-    <title>Login</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="/static/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
     <script src="/static/js/jquery-3.1.1.min.js"
             th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
-    <script src="webjars/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
-    <link href="/css/main.css"
-          th:href="@{/css/main.css}"
-          rel="stylesheet" media="screen"/>
+    <!-- Mainly scripts -->
+    <script src="js/jquery.metisMenu.js"
+            th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script src="js/jquery.slimscroll.min.js"
+            th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <!-- Custom and plugin javascript -->
+    <link href="css/custom.css"
+          th:href="@{/css/custom.css}"
+          rel="stylesheet"/>
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"
           th:href="@{'http://www.w3schools.com/lib/w3.css'}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"
-          th:href="@{'https://fonts.googleapis.com/css?family=Raleway'}"/>
-
+    <script src="js/custom.js"
+            th:src="@{/js/custom.js}"></script>
+    <script src="js/screenfull.js"
+            th:src="@{/js/screenfull.js}"></script>
+    <script src="js/bootstrap.min.js"
+            th:src="@{/js/bootstrap.min.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"
             th:src="@{'https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js'}"></script>
+    <script th:inline="javascript">
 
-    <style>
-        body, h1, h2, h3, h4, h5, h6 {
-            font-family: "Raleway", sans-serif
-        }
 
-        .w3-quarter img {
-            margin-bottom: -6px;
-            cursor: pointer
-        }
+        $(function () {
+            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-        .w3-quarter img:hover {
-            opacity: 0.6;
-            transition: 0.3s
-        }
-    </style>
+            if (!screenfull.enabled) {
+                return false;
+            }
+
+
+            $('#toggle').click(function () {
+                screenfull.toggle($('#container')[0]);
+            });
+
+
+        });
+    </script>
+
+
 </head>
 <body>
-<div class="w3-container">
-    <div id="country" class="w3-card-24 w3-center w3-margin" >
-        <legend>Countrys</legend>
-        <section id="maList" class="content-inner table-responsive">
-            <table id="countrys" align="center" class="table table-condensed table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Country name</th>
-                    <th>Code</th>
-                    <th>Controls</th>
-                </tr>
-                </thead>
-                <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
-                <tbody class="list">
-                <tr th:each="country : ${countrys}">
-                    <td th:text="${country.id}"></td>
-                    <td th:text="${country.countryName}"></td>
-                    <td th:text="${country.code}"></td>
-                    <td>
-                        <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
-                              method="get" th:method="get">
-                            <div class="text-center pull-left">
-                                <button class="w3-btn w3-hover-purple center-block w3-round-large" th:id="edit">
-                                    Edit
-                                </button>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
-                </tbody>
-                <ul class="pagination center-block">
-                    <li><a href="#">«</a></li>
-                    <li><a class="active" href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-                <script src="http://listjs.com/assets/javascripts/list.min.js"
-                        th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
-                <script th:inline="javascript">
-                    var options = {
-                        valueNames: ['id', 'countryName', 'code'],
-                        page: 5,
-                        plugins: [
-                            ListPagination({})
-                        ]
-                    };
-                    var countryList = new List('country', options);
-                </script>
-            </table>
-        </section>
+<div id="wrapper">
+
+    <div th:replace="fragments/navbars :: headerNavbar" style=""></div>
+    <div class="clearfix">
+    </div>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="w3-container">
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+            <div id="country" class="w3-card-24 w3-center w3-margin">
+                <legend>Countrys</legend>
+
+                    <table id="countrys" align="center" class="table table-condensed table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Country name</th>
+                            <th>Code</th>
+                            <th>Controls</th>
+                        </tr>
+                        </thead>
+                        <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+                        <tbody class="list">
+                        <tr th:each="country : ${countrys}">
+                            <td th:text="${country.id}"></td>
+                            <td th:text="${country.countryName}"></td>
+                            <td th:text="${country.code}"></td>
+                            <td>
+                                <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
+                                      method="get" th:method="get">
+                                    <div class="text-center pull-left">
+                                        <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large" th:id="edit">
+                                            Edit
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <ul class="pagination center-block ">
+                            <li><a href="#">«</a></li>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                        <script src="http://listjs.com/assets/javascripts/list.min.js"
+                                th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
+                        <script th:inline="javascript">
+                            var options = {
+                                valueNames: ['id', 'countryname', 'code','controls'],
+                                page: 5,
+                                plugins: [
+                                    ListPagination({})
+                                ]
+                            };
+                            var countryList = new List('country', options);
+                        </script>
+                    </table>
+
+            </div>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

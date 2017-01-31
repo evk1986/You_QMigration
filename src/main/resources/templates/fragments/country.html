@@ -41,12 +41,13 @@
 <body>
 <!--add new country-->
 <div class="container" th:fragment="add_new_country">
-    <div class="w3-row-padding" style="margin-top: 100px">
+    <div class="w3-row-padding w3-margin" style="">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
             <div class="w3-card-24 w3-border w3-margin">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Edit profile</h3>
+                        <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new
+                            country</h3>
                     </div>
                     <!--/*@thymesVar id="country" type="ua.kravchenko.youq.entity.Country"*/-->
                     <form class="panel-body form-horizontal" name="save_new_ds"
@@ -61,14 +62,13 @@
 
                                         <tr>
                                             <td><label for="name">Country Name:</label></td>
-
                                             <td><input type="text" id="name" class="form-control input-sm"
                                                        th:field="*{countryName}"/></td>
                                         </tr>
                                         <tr>
                                             <td><label for="code">Code:</label></td>
-                                            <td><textarea type="text" id="code" class="form-control input-sm"
-                                                          th:field="*{code}"></textarea></td>
+                                            <td><input type="text" id="code" class="form-control input-sm"
+                                                       th:field="*{code}"/></td>
                                         </tr>
 
                                         </tbody>
@@ -76,7 +76,6 @@
                                     <div th:align="center" class="panel-footer">
                                         <input type="submit" value="Save"
                                                class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-
                                         <input href="#" type="reset" value="Cancel"
                                                class="w3-btn w3-hover-red w3-white w3-border center-block"/>
 

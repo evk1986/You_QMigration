@@ -18,18 +18,40 @@ import javax.persistence.EntityManager;
 public class UserController {
 
     @Autowired
-        UserService service;
+    UserService service;
 
-        @Autowired
-        EntityManager em;
+    @Autowired
+    EntityManager em;
 
 
-        @RequestMapping(value = "/user", method = RequestMethod.GET)
-        public String getUserView(Model model) {
-            User user = new User();
-            model.addAttribute("user", user);
-            return "user";
-        }
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String getUserView(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "user";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginView(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String getReistrationView(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "signup";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String registrationUser(@ModelAttribute(value = "user") User user) {
+        user.setRole("ROLE_ADMIN");
+        service.save(user);
+        return "redirect:/main";
+    }
+
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainView(Model model) {
@@ -38,24 +60,22 @@ public class UserController {
         return "index";
     }
 
-        @RequestMapping(value = "/test", method = RequestMethod.POST)
-        public String postUserView(@ModelAttribute(value = "user")
-                User user,
-                Model model) {
-            System.out.println(user.toString());
-            User cu = null;
-            if (service.findByLogin(user.getLogin()) != null) {
-                cu = service.findByLogin(user.getLogin());
-            } else {
-                cu = new User();
-            }
+    /*@RequestMapping(value = "/test", method = RequestMethod.POST)
+    public String postUserView(@ModelAttribute(value = "user")
+                                       User user,
+                               Model model) {
+        System.out.println(user.toString());
+        User cu = null;
+        if (service.findByLogin(user.getLogin()) != null) {
+            cu = service.findByLogin(user.getLogin());
+        } else {
+            cu = new User();
+        }
+        cu.setLogin(user.getLogin());
 
-            cu.setLogin(user.getLogin());
-            cu.setHomeAdress(user.getHomeAdress());
-            cu.setTelNumber(user.getTelNumber());
 
-        /*Mysql*/
-        service.save(cu);
+        *//*Mysql*//*
+        service.save(cu);*/
 
        /*firebase*/
        /* final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -71,6 +91,6 @@ public class UserController {
         System.out.println(cu.getId() + "   ID");
         service.getlastObjectRevision(cu.getId());
         System.out.println("all ids ;" + service.findAllId());*/
-        return "user";
-    }
+    /*    return "user";
+    }*/
 }

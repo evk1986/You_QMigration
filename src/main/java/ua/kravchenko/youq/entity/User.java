@@ -8,7 +8,6 @@ import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -29,10 +28,11 @@ public class User implements Serializable {
     private String login;
 
     @Column
-    private String homeAdress;
+    private String password;
 
     @Column
-    private String telNumber;
+    private String role;
+
 
     @Column(name = "created_date", updatable = false, nullable = false)
     @CreatedDate
@@ -46,9 +46,20 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String homeAdress, String telNumber) {
-        this.homeAdress = homeAdress;
-        this.telNumber = telNumber;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public long getCreatedDate() {
@@ -84,33 +95,19 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public String getHomeAdress() {
-        return homeAdress;
-    }
-
-    public void setHomeAdress(String homeAdress) {
-        this.homeAdress = homeAdress;
-    }
-
-    public String getTelNumber() {
-        return telNumber;
-    }
-
-    public void setTelNumber(String telNumber) {
-        this.telNumber = telNumber;
-    }
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
+        if (createdDate != user.createdDate) return false;
+        if (modifiedDate != user.modifiedDate) return false;
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (homeAdress != null ? !homeAdress.equals(user.homeAdress) : user.homeAdress != null) return false;
-        return telNumber != null ? telNumber.equals(user.telNumber) : user.telNumber == null;
+        return login != null ? login.equals(user.login) : user.login == null;
 
     }
 
@@ -118,8 +115,8 @@ public class User implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (homeAdress != null ? homeAdress.hashCode() : 0);
-        result = 31 * result + (telNumber != null ? telNumber.hashCode() : 0);
+        result = 31 * result + (int) (createdDate ^ (createdDate >>> 32));
+        result = 31 * result + (int) (modifiedDate ^ (modifiedDate >>> 32));
         return result;
     }
 
@@ -128,8 +125,7 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", homeAdress='" + homeAdress + '\'' +
-                ", telNumber='" + telNumber + '\'' +
+
                 ", createdDate=" + createdDate +
                 ", modifiedDate=" + modifiedDate +
                 '}';

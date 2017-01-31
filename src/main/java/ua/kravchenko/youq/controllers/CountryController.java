@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ua.kravchenko.youq.entity.Country;
 import ua.kravchenko.youq.services.CountryService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -39,7 +40,9 @@ public class CountryController {
      * @return
      */
     @RequestMapping(value = "/add_new_country", method = RequestMethod.PUT)
-    public String addNewCountry(Model model, @ModelAttribute(value = "country") Country country) {
+    public String addNewCountry(Model model,
+                                @ModelAttribute(value = "country") Country country,
+                                HttpServletRequest req) {
         System.out.println(country.toString());
         Country countryDao = null;
         if (countryService.findByName(country.getCountryName()) != null) {
@@ -52,7 +55,7 @@ public class CountryController {
 
         countryService.save(countryDao);
         model.addAttribute("country", countryDao);
-        return "succesAddingDs";
+        return "redirect:"+ req.getContextPath() + "/country/administrate_countries";
     }
 
     /**
@@ -64,7 +67,7 @@ public class CountryController {
     public String deleteCountry(Model model) {
         List<Country> countrys = countryService.findAll();
         model.addAttribute("countrys", countrys);
-        return "countrys_administrate";
+        return "countrys_adminisrate";
     }
 
 

@@ -52,7 +52,8 @@ public class DsController {
     @RequestMapping(value = "/save_ds", method = RequestMethod.PUT)
     public String saveMyDs(@ModelAttribute(value = "ds")
                                    Ds ds, BindingResult bindingResult,
-                           Model model) {
+                           Model model,
+                           HttpServletRequest req) {
         System.out.println(ds.toString());
         Ds dsDao = null;
         if (dsService.findByName(ds.getName()) != null) {
@@ -66,13 +67,14 @@ public class DsController {
         dsDao.setAbout(ds.getAbout());
         dsDao.setImg(ds.getImg());
         dsDao.setColorBg(ds.getColorBg());
+        dsDao.setColorFont(ds.getColorFont());
         dsDao.setCodeFormat(ds.getCodeFormat());
         dsDao.setCountry(ds.getCountry());
         dsDao.setUrl(ds.getUrl());
         dsDao.setTelNumber(ds.getTelNumber());
         dsDao.setTelName(ds.getTelName());
         dsService.save(dsDao);
-        return "redirect:/ds/succes_adding_ds";
+        return "redirect:"+ req.getContextPath() + "/ds/administrate_ds";
     }
 
     @RequestMapping(value = "/administrate_ds", method = RequestMethod.GET)
@@ -102,7 +104,7 @@ public class DsController {
         return "ds_edit";
     }
 
-    @RequestMapping(value = "/ds_edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/administrate_ds/ds_edit", method = RequestMethod.GET)
     public String fetEditViewDs(Model model) {
         Ds ds = new Ds();
         List<Country> countries = countryService.findAll();

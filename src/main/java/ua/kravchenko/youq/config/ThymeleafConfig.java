@@ -17,10 +17,11 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 @Configuration
 public class ThymeleafConfig extends WebMvcConfigurerAdapter {
 
+    private static final String PATH = "/errors";
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-      // registry.addViewController("/").setViewName("index.html");
+        // registry.addViewController("/").setViewName("index.html");
     }
 
     @Bean
@@ -49,5 +50,18 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter {
         messageSource.setBasename("message");
         return messageSource;
     }
+
+
+   /* @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
+
+        return (container -> {
+            ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
+            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
+            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+
+            container.addErrorPages(error401Page, error404Page, error500Page);
+        });
+    }*/
 }
 

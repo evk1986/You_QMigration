@@ -69,7 +69,9 @@
                                             <option th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
                                                     th:value="${format}"
                                                     th:text="${format.getDisplayedName()}"
-                                                    th:placeholder="${ds.codeFormat}">
+                                                    th:placeholder="${ds.codeFormat}"
+                                            th:required="true"
+                                            data-th-required="true">
                                             </option>
                                         </select>
                                     </td>
@@ -82,7 +84,9 @@
                                             <option th:each="country : ${countrys}"
                                                     th:value="${country.getId()}"
                                                     th:text="${country.getCountryName()}"
-                                                    th:placeholder="${ds.country.countryName}">
+                                                    th:placeholder="${ds.country.countryName}"
+                                            th:required="true"
+                                            data-th-required="true">
 
                                             </option>
                                         </select>
