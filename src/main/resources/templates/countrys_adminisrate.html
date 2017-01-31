@@ -66,79 +66,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div id="wrapper">
 
-    <div th:replace="fragments/navbars :: headerNavbar" style=""></div>
+    <div th:replace="fragments/navbars :: headerNavbar"></div>
     <div class="clearfix">
     </div>
 
     <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="w3-container">
+        <div class="content-main">
             <!--banner-->
             <div class="banner">
-
                 <h2>
                     <a href="index.html">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
             </div>
-            <div id="country" class="w3-card-24 w3-center w3-margin">
+            <!-- <div class="content-top" id="content">-->
+            <div id="country" class="w3-margin gray-bg">
                 <legend>Countrys</legend>
-
-                    <table id="countrys" align="center" class="table table-condensed table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Country name</th>
-                            <th>Code</th>
-                            <th>Controls</th>
-                        </tr>
-                        </thead>
-                        <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
-                        <tbody class="list">
-                        <tr th:each="country : ${countrys}">
-                            <td th:text="${country.id}"></td>
-                            <td th:text="${country.countryName}"></td>
-                            <td th:text="${country.code}"></td>
-                            <td>
-                                <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
-                                      method="get" th:method="get">
-                                    <div class="text-center pull-left">
-                                        <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large" th:id="edit">
-                                            Edit
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <ul class="pagination center-block ">
-                            <li><a href="#">«</a></li>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">6</a></li>
-                            <li><a href="#">7</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
-                        <script src="http://listjs.com/assets/javascripts/list.min.js"
-                                th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
-                        <script th:inline="javascript">
-                            var options = {
-                                valueNames: ['id', 'countryname', 'code','controls'],
-                                page: 5,
-                                plugins: [
-                                    ListPagination({})
-                                ]
-                            };
-                            var countryList = new List('country', options);
-                        </script>
-                    </table>
+                <table id="countrys" align="center" class="table table-condensed table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Country name</th>
+                        <th>Code</th>
+                        <th>Controls</th>
+                    </tr>
+                    </thead>
+                    <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+                    <tbody class="list">
+                    <tr th:each="country : ${countrys}">
+                        <td th:text="${country.id}"></td>
+                        <td th:text="${country.countryName}"></td>
+                        <td th:text="${country.code}"></td>
+                        <td>
+                            <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
+                                  method="get" th:method="get">
+                                <div class="text-center pull-left">
+                                    <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
+                                            th:id="edit">
+                                        Edit
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <ul class="pagination center-block ">
+                        <li><a href="#">«</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                    <script src="http://listjs.com/assets/javascripts/list.min.js"
+                            th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
+                    <script th:inline="javascript">
+                        var options = {
+                            valueNames: ['id', 'countryname', 'code', 'controls'],
+                            page: 5,
+                            plugins: [
+                                ListPagination({})
+                            ]
+                        };
+                        var countryList = new List('country', options);
+                    </script>
+                </table>
 
             </div>
         </div>
     </div>
+    <div class="copy">
+        <p> &copy; 2016 Minimal. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+        </p></div>
+
+
+    <div class="clearfix"></div>
 </div>
+
+
 </body>
 </html>

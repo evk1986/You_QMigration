@@ -60,16 +60,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <h1 class="w3-center"><a href="index.html">DS </a></h1>
     <div class="login-bottom">
         <h2>Login</h2>
-        <form th:action="@{/login}" th:method="post">
+        <form th:action="@{/login}" method="post">
             <!--/*@thymesVar id="user" type="ua.kravchenko.youq.entity.User"*/-->
             <div class="col-md-6">
                 <div class="login-mail">
 
-                    <input th:field="${user.login}" type="text" placeholder="Login" required=""/>
+                    <input name="username" id="username" type="text" placeholder="username" required=""/>
                     <i class="fa fa-envelope"></i>
                 </div>
                 <div class="login-mail">
-                    <input type="password" placeholder="Password" required="" th:field="${user.password}"/>
+                    <input name="password" id="password" type="password" placeholder="password" required=""/>
                     <i class="fa fa-lock"></i>
                 </div>
                 <a class="news-letter " href="#">
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="submit" value="login"/>
                 </label>
                 <p>Do not have an account?</p>
-                <a href="signup.html" class="hvr-shutter-in-horizontal">Signup</a>
+                <a href="#" th:href="@{/registration}" class="hvr-shutter-in-horizontal">Signup</a>
             </div>
 
             <div class="clearfix"></div>

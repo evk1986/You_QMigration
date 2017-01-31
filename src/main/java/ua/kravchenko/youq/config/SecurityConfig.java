@@ -52,26 +52,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/signup", "/").permitAll()
+                .antMatchers("/ds/**", "/country/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/shop/**").permitAll()/*access("hasRole('ROLE_USER')")*/
                 .antMatchers("/resources/**", "/**").permitAll()
                 .antMatchers("/static/**", "/**").permitAll()
+                .antMatchers("/registration", "/").permitAll()
+                .antMatchers("/media/**").permitAll()
+                .antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
                 .and()
                 .formLogin().
                 loginPage("/login").permitAll()
                 .and()
                 .logout().permitAll();
         http.csrf().disable();
-
-
-    }
-
-    @Override
-    public void configure(final WebSecurity web) throws Exception {
-
-        web.ignoring().antMatchers("/static/**");
-        web.ignoring().antMatchers("/js/**");
     }
 
 
 }
+
+/*
+    @Override
+    public void configure(final WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/static/**");
+        web.ignoring().antMatchers("/js/**");
+    }
+
+*/

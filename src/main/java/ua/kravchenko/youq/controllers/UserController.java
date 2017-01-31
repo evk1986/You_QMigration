@@ -35,17 +35,17 @@ public class UserController {
     public String getLoginView(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "login";
+        return "signin";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getReistrationView(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "signup";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registrationUser(@ModelAttribute(value = "user") User user) {
         user.setRole("ROLE_ADMIN");
         service.save(user);
@@ -57,6 +57,11 @@ public class UserController {
     public String getMainView(Model model) {
         User user = new User();
         model.addAttribute("user", user);
+        return "index";
+    }
+
+    @RequestMapping("/")
+   public String index(){
         return "index";
     }
 
