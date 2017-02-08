@@ -1,13 +1,13 @@
 package ua.kravchenko.youq.controllers;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ua.kravchenko.youq.entity.Country;
 import ua.kravchenko.youq.entity.Ds;
 import ua.kravchenko.youq.services.CountryService;
@@ -15,6 +15,8 @@ import ua.kravchenko.youq.services.DsService;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -32,6 +34,9 @@ public class DsController {
 
     @Autowired
     CountryService countryService;
+
+    @Autowired
+    Cloudinary cloudinary;
 
 
     @RequestMapping(value = "/succes_adding_ds", method = RequestMethod.GET)
@@ -53,28 +58,31 @@ public class DsController {
     public String saveMyDs(@ModelAttribute(value = "ds")
                                    Ds ds, BindingResult bindingResult,
                            Model model,
-                           HttpServletRequest req) {
+                           HttpServletRequest req,
+                           @RequestPart("image") MultipartFile file) throws IOException {
         System.out.println(ds.toString());
-        Ds dsDao = null;
+        Ds dsModel = null;
         if (dsService.findByName(ds.getName()) != null) {
-            dsDao = dsService.findByName(ds.getName());
+            dsModel = dsService.findByName(ds.getName());
         } else {
-            dsDao = new Ds();
+            dsModel = new Ds();
         }
-        dsDao.setName(ds.getName());
-        dsDao.setName(ds.getName());
-        dsDao.setTitle(ds.getTitle());
-        dsDao.setAbout(ds.getAbout());
-        dsDao.setImg(ds.getImg());
-        dsDao.setColorBg(ds.getColorBg());
-        dsDao.setColorFont(ds.getColorFont());
-        dsDao.setCodeFormat(ds.getCodeFormat());
-        dsDao.setCountry(ds.getCountry());
-        dsDao.setUrl(ds.getUrl());
-        dsDao.setTelNumber(ds.getTelNumber());
-        dsDao.setTelName(ds.getTelName());
-        dsService.save(dsDao);
-        return "redirect:"+ req.getContextPath() + "/ds/administrate_ds";
+        dsModel.setName(ds.getName());
+        dsModel.setName(ds.getName());
+        dsModel.setTitle(ds.getTitle());
+        dsModel.setAbout(ds.getAbout());
+        // dsModel.setImg(ds.getImg());
+        byte[] img = file.getBytes();
+        dsModel.setImg(dsService.uploadPhoto(img));
+        dsModel.setColorBg(ds.getColorBg());
+        dsModel.setColorFont(ds.getColorFont());
+        dsModel.setCodeFormat(ds.getCodeFormat());
+        dsModel.setCountry(ds.getCountry());
+        dsModel.setUrl(ds.getUrl());
+        dsModel.setTelNumber(ds.getTelNumber());
+        dsModel.setTelName(ds.getTelName());
+        dsService.save(dsModel);
+        return "redirect:" + req.getContextPath() + "/ds/administrate_ds";
     }
 
     @RequestMapping(value = "/administrate_ds", method = RequestMethod.GET)
@@ -115,9 +123,26 @@ public class DsController {
     }
 
     @RequestMapping(value = "/administrate_ds/delete/{id}", method = RequestMethod.POST)
-    public String deleteDs(Model model, @PathVariable("id") Long id,HttpServletRequest req) {
+    public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
         dsService.delete(id);
-        return "redirect:"+ req.getContextPath() + "/ds/administrate_ds";
+        return "redirect:" + req.getContextPath() + "/ds/administrate_ds";
     }
+
+
+    @ResponseBody()
+    @RequestMapping(value = "/administrate_ds/edit/small/image/{name}", method = RequestMethod.GET)
+    public String getImage(@PathVariable("name") String name, Model model, HttpServletResponse response) throws IOException {
+        Ds ds = dsService.findByName(name);
+        String url = cloudinary.url().type("fetch")
+                .transformation(
+                        new Transformation().width(150).height(150)
+                                .crop("thumb").gravity("face").radius(20))
+                .imageTag(ds.getImg());
+        model.addAttribute("url", url);
+
+
+        return url;
+    }
+
 }
 

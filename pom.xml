@@ -112,6 +112,13 @@
             <version>2.5.3.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
+
 
     </dependencies>
 

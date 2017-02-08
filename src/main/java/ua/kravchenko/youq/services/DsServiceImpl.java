@@ -1,13 +1,17 @@
 package ua.kravchenko.youq.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revision;
 import org.springframework.stereotype.Service;
 import ua.kravchenko.youq.entity.Ds;
 import ua.kravchenko.youq.repositories.DsRepository;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Egor on 29.01.2017.
@@ -16,6 +20,10 @@ import java.util.List;
 public class DsServiceImpl implements DsService {
     @Autowired
     DsRepository repository;
+
+    @Autowired
+    Cloudinary cloudinary;
+    /*CLOUDINARY_URL=cloudinary://{api_key}:{api_secret}@{cloud_name};*/
 
     /**
      * save  discount system to db;
@@ -75,4 +83,13 @@ public class DsServiceImpl implements DsService {
     public void delete(Long id) {
         repository.delete(id);
     }
+
+    @Override
+    public String uploadPhoto(byte[] photoBytes) throws IOException {
+        Map<String, String> map = cloudinary.uploader().upload(photoBytes, ObjectUtils.emptyMap());
+        String url = map.get("url");
+        return url;
+    }
+
+
 }

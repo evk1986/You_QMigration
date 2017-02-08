@@ -5,6 +5,8 @@
 
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel='stylesheet' type='text/css'/>
 
 </head>
 <body>
@@ -30,7 +32,7 @@
                                 <tr>
                                     <td><label for="name">Name:</label></td>
                                     <td><input type="text" id="name" class="form-control input-sm"
-                                               th:placeholder="${ds.name}"   th:field="*{name}"/></td>
+                                               th:placeholder="${ds.name}" th:field="*{name}"/></td>
                                 </tr>
                                 <tr>
                                     <td><label for="title">Title:</label></td>
@@ -43,10 +45,18 @@
                                                   th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="image_name">Image:</label></td>
-                                    <td><input type="text" id="image_name"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.img}" th:field="*{img}"/></td>
+                                    <td><label for="smallimage">Image:</label></td>
+                                    <!--<div  id="wrapper" style="margin-top: 20px; width: 155px;height: 155px;">-->
+                                    <td>
+                                        <div><img id="smallimage" alt="#" th:src="@{'small/image/'+${ds.name}}"
+                                                  src="#"/></div>
+                                    </td>
+                                    <!-- <div></div>
+                                     <div id="image-holder"></div>-->
+                                    <!--    </div>-->
+                                    <!-- <td><input type="text" id="image_name"
+                                                class="form-control input-sm"
+                                                th:placeholder="${ds.img}" th:field="*{img}"/></td>-->
                                 </tr>
                                 <tr>
                                     <td><label for="color_bg">Background Color:</label></td>
@@ -70,8 +80,8 @@
                                                     th:value="${format}"
                                                     th:text="${format.getDisplayedName()}"
                                                     th:placeholder="${ds.codeFormat}"
-                                            th:required="true"
-                                            data-th-required="true">
+                                                    th:required="true"
+                                                    data-th-required="true">
                                             </option>
                                         </select>
                                     </td>
@@ -85,8 +95,8 @@
                                                     th:value="${country.getId()}"
                                                     th:text="${country.getCountryName()}"
                                                     th:placeholder="${ds.country.countryName}"
-                                            th:required="true"
-                                            data-th-required="true">
+                                                    th:required="true"
+                                                    data-th-required="true">
 
                                             </option>
                                         </select>

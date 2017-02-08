@@ -21,7 +21,8 @@
 
                 <form class="form-horizontal" name="save_new_ds"
                       th:action="@{/ds/save_ds}" th:object="${ds}"
-                      th:method="PUT">
+                      th:method="PUT"
+                      enctype="multipart/form-data">
 
                     <div class="row">
                         <div class=" col-md-9 col-lg-9">
@@ -43,10 +44,12 @@
                                                   th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="image_name">Image:</label></td>
-                                    <td><input type="text" id="image_name"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.img}" th:field="*{img}"/></td>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="image">Upload logo</label>
+                                        <div class="col-md-4">
+                                            <input id="image" name="image" class="input-file" type="file"/>
+                                        </div>
+                                    </div>
                                 </tr>
                                 <tr>
                                     <td><label for="color_bg">Background Color:</label></td>
@@ -83,8 +86,7 @@
                                             <option th:each="country : ${countrys}"
                                                     th:value="${country.getId()}"
                                                     th:text="${country.getCountryName()}"
-                                                    data-th-required="true"
-                                            >
+                                                    data-th-required="true">
 
                                             </option>
                                         </select>
