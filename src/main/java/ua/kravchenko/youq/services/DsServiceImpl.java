@@ -87,7 +87,7 @@ public class DsServiceImpl implements DsService {
     @Override
     public String uploadPhoto(byte[] photoBytes) throws IOException {
         Map<String, String> map = cloudinary.uploader().upload(photoBytes, ObjectUtils.emptyMap());
-        String url = map.get("url");
+        String url = map.get("public_id");
         return url;
     }
 
