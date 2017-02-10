@@ -23,7 +23,8 @@
 
                 <form class="form-horizontal" name="save_new_ds"
                       th:action="@{/ds/save_ds}" th:object="${ds}"
-                      th:method="PUT">
+                      th:method="PUT"
+                      enctype="multipart/form-data">
 
                     <div class="row">
                         <div class=" col-md-9 col-lg-9 ">
@@ -46,18 +47,23 @@
                                 </tr>
                                 <tr>
                                     <td><label for="smallimage">Image:</label></td>
-                                    <!--<div  id="wrapper" style="margin-top: 20px; width: 155px;height: 155px;">-->
+
                                     <td>
-                                        <div><img id="smallimage" alt="#" th:src="@{'small/image/'+${ds.name}}"
-                                                  src="#"/></div>
+                                        <div class="col-md-4">
+                                            <img th:with="maurl = @{'/data/image/small/'+${ds.name}}"
+                                                 id="smallimage"
+                                                 alt="#"
+                                                 th:src="${maurl}" src="#"
+                                            />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <input id="image" name="image" class="input-file" type="file"/>
+                                        </div>
 
                                     </td>
-                                    <!-- <div></div>
-                                     <div id="image-holder"></div>-->
-                                    <!--    </div>-->
-                                    <!-- <td><input type="text" id="image_name"
-                                                class="form-control input-sm"
-                                                th:placeholder="${ds.img}" th:field="*{img}"/></td>-->
+
+
                                 </tr>
                                 <tr>
                                     <td><label for="color_bg">Background Color:</label></td>

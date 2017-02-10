@@ -1,11 +1,6 @@
 package ua.kravchenko.youq.controllers;
 
-import com.cloudinary.Api;
 import com.cloudinary.Cloudinary;
-import com.cloudinary.Transformation;
-import com.cloudinary.utils.ObjectUtils;
-import org.cloudinary.json.JSONArray;
-import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +14,8 @@ import ua.kravchenko.youq.services.DsService;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Egor on 29.01.2017.
@@ -133,37 +126,6 @@ public class DsController {
         return "redirect:" + req.getContextPath() + "/ds/administrate_ds";
     }
 
-
-    @ResponseBody()
-    @RequestMapping(value = "/administrate_ds/edit/small/image/{name}", method = RequestMethod.GET)
-    public String getImage(@PathVariable("name") String name, Model model, HttpServletResponse response) throws Exception {
-        Api api = cloudinary.api();
-        Ds ds = dsService.findByName(name);
-        Map result = api
-                .transformation(
-                        new Transformation().width(150).height(150)
-                                .crop("thumb").gravity("face").radius(20).generate(), ObjectUtils.emptyMap());
-
-
-
-        api.resource(ds.getImg(), ObjectUtils.emptyMap());
-        System.out.println("result : " + result);
-        // System.out.println(api.resource(ds.getImg(), ObjectUtils.emptyMap()));
-        // System.out.println(url);
-        //result.get("url").toString();
-
-        JSONObject object = new JSONObject(result);
-       // object.get("derived");
-        JSONObject list = new JSONObject(object.getJSONArray("derived"));
-        JSONArray s = object.getJSONArray("derived");
-
-        System.out.println("url _ ");
-        System.out.println("list:    " + list.toString());
-        System.out.println(object.toString());
-
-        System.out.println(cloudinary.url().transformation(new Transformation().width(300).height(200).crop("crop")).imageTag(ds.getImg()));
-        return cloudinary.url().transformation(new Transformation().width(300).height(200).crop("crop")).imageTag(ds.getImg());
-    }
 
 }
 

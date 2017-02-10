@@ -1,7 +1,9 @@
 package ua.kravchenko.youq.services;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
+import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.history.Revision;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import ua.kravchenko.youq.repositories.DsRepository;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -81,14 +84,27 @@ public class DsServiceImpl implements DsService {
 
     @Override
     public void delete(Long id) {
+        Ds currentDs = repository.findOne(id);
+        try {
+            Map result = cloudinary.uploader().destroy(currentDs.getImg(), ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         repository.delete(id);
     }
 
     @Override
     public String uploadPhoto(byte[] photoBytes) throws IOException {
-        Map<String, String> map = cloudinary.uploader().upload(photoBytes, ObjectUtils.emptyMap());
-        String url = map.get("public_id");
-        return url;
+        /*create properties to upload file*/
+        Map options = ObjectUtils.asMap(
+                "eager", Arrays.asList(
+                        new Transformation().width(200).crop("scale").radius(20)));
+        /*file upload*/
+        Map<String, String> uploadResult = cloudinary.uploader().upload(photoBytes, options);
+        /*get id from photo*/
+        System.out.println(new JSONObject(uploadResult));
+        String publicId = uploadResult.get("public_id");
+        return publicId;
     }
 
 
