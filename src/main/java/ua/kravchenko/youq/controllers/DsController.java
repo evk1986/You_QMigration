@@ -70,8 +70,12 @@ public class DsController {
         dsModel.setTitle(ds.getTitle());
         dsModel.setAbout(ds.getAbout());
         // dsModel.setImg(ds.getImg());
-        byte[] img = file.getBytes();
-        dsModel.setImg(dsService.uploadPhoto(img));
+        if (!file.isEmpty()) {
+            byte[] img = file.getBytes();
+            dsModel.setImg(dsService.uploadPhoto(img));
+        }
+
+
         dsModel.setColorBg(ds.getColorBg());
         dsModel.setColorFont(ds.getColorFont());
         dsModel.setCodeFormat(ds.getCodeFormat());

@@ -51,7 +51,7 @@ public class ShedulledRevisionDb {
                     new Country(countrys.get(i).getCountryName(),
                             countrys.get(i).getCode(),
                             countrys.get(i).getId()));
-            countryRef.setValue(country);
+            countryRef.updateChildren(country);
         }
         for (int i = 0; i < ids.size(); i++) {
             Revision revision = service.getlastObjectRevision(ids.get(i).longValue());
@@ -74,9 +74,8 @@ public class ShedulledRevisionDb {
                     ds.getTitle(),
                     ds.getUrl()));
             System.out.println(ds.getCountry().toString());
-           /* country.put("country", ds.getCountry() );*/
             childRef.updateChildren(currentDs);
-           /* countryRef.setValue(country);*/
+
         }
     }
 }
