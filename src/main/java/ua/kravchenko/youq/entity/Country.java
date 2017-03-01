@@ -14,7 +14,7 @@ import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
  */
 @Entity
 @Audited(targetAuditMode = NOT_AUDITED)
-public class Country implements Serializable{
+public class Country implements Serializable {
 
     @Id
     @GeneratedValue
@@ -30,6 +30,12 @@ public class Country implements Serializable{
     private List<Ds> discountSystems;
 
     public Country() {
+    }
+
+    public Country(String countryName, String code, int id) {
+        this.countryName = countryName;
+        this.code = code;
+        this.id = id;
     }
 
     public List<Ds> getDiscountSystems() {
@@ -87,11 +93,11 @@ public class Country implements Serializable{
 
     @Override
     public String toString() {
-        return countryName;
-     /*   return "Country{" +
+       /* return countryName;*/
+        return "Country{" +
                 "id=" + id +
                 ", countryName='" + countryName + '\'' +
                 ", code='" + code + '\'' +
-                '}';*/
+                '}';
     }
 }

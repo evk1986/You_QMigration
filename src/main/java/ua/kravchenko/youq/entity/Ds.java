@@ -46,7 +46,7 @@ public class Ds implements Serializable {
     private String codeFormat;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
     @JoinColumn(name = "countryName")
     private Country country;
 
@@ -67,8 +67,10 @@ public class Ds implements Serializable {
     @LastModifiedDate
     private long modifiedDate;
 
+    private int countryId;
+
     public Ds(/*String name,*/ String about, String codeFormat, String colorBg,
-              String colorFont,/* Country country,*/ Long id, String img,
+              String colorFont, int countryId, Long id, String img,
               String telName, String telNumber, String title, String url) {
 
         /*this.name = name;*/
@@ -76,7 +78,7 @@ public class Ds implements Serializable {
         this.codeFormat = codeFormat;
         this.colorBg = colorBg;
         this.colorFont = colorFont;
-       /* this.country = country;*/
+        this.countryId = countryId;
         this.id = id;
         this.img = img;
         this.telName = telName;
@@ -86,6 +88,10 @@ public class Ds implements Serializable {
     }
 
     public Ds() {
+    }
+
+    public int getCountryId() {
+        return countryId;
     }
 
     public long getCreatedDate() {
