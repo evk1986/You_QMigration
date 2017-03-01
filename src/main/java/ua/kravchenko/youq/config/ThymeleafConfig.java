@@ -14,6 +14,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 /**
  * Created by Egor on 08.01.2017.
  */
+
 @Configuration
 public class ThymeleafConfig extends WebMvcConfigurerAdapter {
 

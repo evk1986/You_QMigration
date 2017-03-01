@@ -29,6 +29,9 @@ public class Country implements Serializable{
     @OneToMany(mappedBy = "country")
     private List<Ds> discountSystems;
 
+    public Country() {
+    }
+
     public List<Ds> getDiscountSystems() {
         return discountSystems;
     }

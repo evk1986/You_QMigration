@@ -67,7 +67,7 @@ public class DsServiceImpl implements DsService {
      */
     @Override
     public List<BigInteger> findAllId() {
-        return null;
+        return repository.findAllDsId();
     }
 
     /**
@@ -78,8 +78,11 @@ public class DsServiceImpl implements DsService {
      * @return Revision
      */
     @Override
+
     public Revision getlastObjectRevision(Long id) {
-        return null;
+        System.out.println(id + "im in history");
+        Revision last = repository.findLastChangeRevision(id);
+        return last;
     }
 
     @Override

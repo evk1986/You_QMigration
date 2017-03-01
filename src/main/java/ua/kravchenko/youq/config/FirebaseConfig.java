@@ -1,7 +1,11 @@
 package ua.kravchenko.youq.config;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -18,12 +22,11 @@ public class FirebaseConfig {
      * @Todo
      * @return
      */
-   /* @Bean
+    @Bean
     public DatabaseReference firebaseDatabse() {
         DatabaseReference firebase = FirebaseDatabase.getInstance().getReference();
         return firebase;
     }
-*/
     @PostConstruct
     public void init() throws FileNotFoundException {
         /**
@@ -37,7 +40,7 @@ public class FirebaseConfig {
                 .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
                 .setDatabaseUrl("https://wakeodessa.firebaseio.com")
                 .build();
-   //    FirebaseApp.initializeApp(options);
+        FirebaseApp.initializeApp(options);
     }
 
 }

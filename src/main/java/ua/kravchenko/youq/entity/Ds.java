@@ -18,7 +18,8 @@ import java.io.Serializable;
 @Audited
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "discount_system")
-public class Ds implements Serializable{
+public class Ds implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,6 +66,27 @@ public class Ds implements Serializable{
     @Column(name = "modified_date")
     @LastModifiedDate
     private long modifiedDate;
+
+    public Ds(/*String name,*/ String about, String codeFormat, String colorBg,
+              String colorFont,/* Country country,*/ Long id, String img,
+              String telName, String telNumber, String title, String url) {
+
+        /*this.name = name;*/
+        this.about = about;
+        this.codeFormat = codeFormat;
+        this.colorBg = colorBg;
+        this.colorFont = colorFont;
+       /* this.country = country;*/
+        this.id = id;
+        this.img = img;
+        this.telName = telName;
+        this.telNumber = telNumber;
+        this.title = title;
+        this.url = url;
+    }
+
+    public Ds() {
+    }
 
     public long getCreatedDate() {
         return createdDate;
