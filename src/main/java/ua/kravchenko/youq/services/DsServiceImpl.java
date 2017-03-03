@@ -90,6 +90,11 @@ public class DsServiceImpl implements DsService {
         Ds currentDs = repository.findOne(id);
         try {
             Map result = cloudinary.uploader().destroy(currentDs.getImg(), ObjectUtils.emptyMap());
+            if (result.isEmpty()) {
+                System.out.println("empty");
+            } else {
+                System.out.println("deleted");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

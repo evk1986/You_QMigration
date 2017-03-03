@@ -18,7 +18,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 @Configuration
 public class ThymeleafConfig extends WebMvcConfigurerAdapter {
 
-    private static final String PATH = "/errors";
+    //private static final String PATH = "/errors";
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

@@ -10,12 +10,12 @@
 <body>
 <div class="container" th:fragment="add_new_ds">
     <div class="w3-row-padding" style="">
-        <div class="w3-card-24 w3-margin w3-padding">
+        <div class="w3-margin w3-padding">
             <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new
-                        discount-system</h3>
-                </div>
+                <section class="panel-heading">
+                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new
+                        discount-system</h1>
+                </section>
                 <!--/*@thymesVar id="ds" type="ua.kravchenko.youq.entity.Ds"*/-->
                 <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
 
@@ -24,115 +24,121 @@
                       th:method="PUT"
                       enctype="multipart/form-data">
 
-                    <div class="row">
-                        <div class=" col-md-9 col-lg-9">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td><label for="name">Name:</label></td>
-                                    <td><input type="text" id="name" class="form-control input-sm"
-                                               th:placeholder="${ds.name}" th:field="*{name}"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="title">Title:</label></td>
-                                    <td><input type="text" id="title" class="form-control input-sm"
-                                               th:placeholder="${ds.title}" th:field="*{title}"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="about">About:</label></td>
-                                    <td><textarea rows="10" type="text" id="about" class="form-control input-sm"
-                                                  th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
-                                </tr>
-                                <tr>
+                    <!--<div class="row">
+                        <div class="col-md-9 col-lg-9">-->
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td><label for="name">Name:</label></td>
+                            <td><input type="text" id="name" class="form-control input-sm"
+                                       th:placeholder="${ds.name}" th:field="*{name}"/></td>
+                        </tr>
 
-                                    <td>
-                                        <label for="image">Upload logo</label>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-4">
-                                            <input th:required="false" id="image" name="image" class="input-file" type="file"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="color_bg">Background Color:</label></td>
-                                    <td><input type="text" id="color_bg"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.colorBg}" th:field="*{colorBg}"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="color_font">Color font:</label></td>
+                        <tr>
+                            <td><label for="title">Title:</label></td>
+                            <td><input type="text" id="title" class="form-control input-sm"
+                                       th:placeholder="${ds.title}" th:field="*{title}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="about">About:</label></td>
+                            <td><textarea rows="10" type="text" id="about" class="form-control input-sm"
+                                          th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
+                        </tr>
+                        <tr>
 
-                                    <td><input type="text" id="color_font"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.colorFont}" th:field="*{colorFont}"/></td>
-                                </tr>
-                                <tr>
+                            <td>
+                                <label for="image">Upload logo</label>
+                            </td>
+                            <td>
+                                <div class="col-md-4">
+                                    <input th:required="false" id="image" name="image" class="input-file"
+                                           type="file"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="color_bg">Background Color:</label></td>
+                            <td><input type="text" id="color_bg"
+                                       class="form-control input-sm"
+                                       th:placeholder="${ds.colorBg}" th:field="*{colorBg}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="color_font">Color font:</label></td>
 
-                                    <td><label for="code_format">Code format:</label></td>
-                                    <td>
-                                        <select id="code_format" th:field="*{codeFormat}">
-                                            <option th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
-                                                    th:value="${format}"
-                                                    th:text="${format.getDisplayedName()}"
-                                                    th:placeholder="${ds.codeFormat}"
-                                                    th:required="true" data-th-required="true">
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr>
+                            <td><input type="text" id="color_font"
+                                       class="form-control input-sm"
+                                       th:placeholder="${ds.colorFont}" th:field="*{colorFont}"/></td>
+                        </tr>
+                        <tr>
 
-                                <tr>
-                                    <td><label for="countrys">Country:</label>
-                                    <td id="countrys">
-                                        <select th:field="*{country}">
-                                            <option th:each="country : ${countrys}"
-                                                    th:value="${country.getId()}"
-                                                    th:text="${country.getCountryName()}"
-                                                    data-th-required="true">
+                            <td><label for="code_format">Code format:</label></td>
+                            <td>
+                                <select id="code_format" th:field="*{codeFormat}">
+                                    <option th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
+                                            th:value="${format}"
+                                            th:text="${format.getDisplayedName()}"
+                                            th:placeholder="${ds.codeFormat}"
+                                            th:required="true" data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
 
-                                            </option>
-                                        </select>
-                                    </td>
+                        <tr>
+                            <td><label for="countrys">Country:</label>
+                            <td id="countrys">
+                                <select th:field="*{country}">
+                                    <option th:each="country : ${countrys}"
+                                            th:value="${country.getId()}"
+                                            th:text="${country.getCountryName()}"
+                                            data-th-required="true">
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="tel_name">Tel name:</label></td>
-                                    <td><input type="text" id="tel_name" class="form-control input-sm"
-                                               th:placeholder="${ds.telName}" th:field="*{telName}"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="tel_number">Tel number:</label></td>
-                                    <td><input type="text" id="tel_number"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.telNumber}" th:field="*{telNumber}"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="url">Url:</label></td>
-                                    <td><input type="text" id="url"
-                                               class="form-control input-sm"
-                                               th:placeholder="${ds.url}" th:field="*{url}"/>
-                                    </td>
-                                </tr>
+                                    </option>
+                                </select>
+                            </td>
 
-
-                                </tbody>
-                            </table>
-
-                            <div class="col-sm-6">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="tel_name">Tel name:</label></td>
+                            <td><input type="text" id="tel_name" class="form-control input-sm"
+                                       th:placeholder="${ds.telName}" th:field="*{telName}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="tel_number">Tel number:</label></td>
+                            <td><input type="text" id="tel_number"
+                                       class="form-control input-sm"
+                                       th:placeholder="${ds.telNumber}" th:field="*{telNumber}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="url">Url:</label></td>
+                            <td><input type="text" id="url"
+                                       class="form-control input-sm"
+                                       th:placeholder="${ds.url}" th:field="*{url}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <input type="submit" value="Save"
                                        class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-                            </div>
-                            <div class="col-sm-6">
-                                <input href="#" type="reset" value="Cancel"
-                                       class="w3-btn w3-hover-red w3-white w3-border center-block"/>
-                            </div>
-                        </div>
+                            </td>
 
-                    </div>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+                    <!-- <div class="col-sm-6">
+                         <input href="#" type="reset" value="Cancel"
+                                class="w3-btn w3-hover-red w3-white w3-border center-block"/>
+                     </div>-->
+                    <!-- </div>
+
+                 </div>-->
 
                 </form>
             </div>

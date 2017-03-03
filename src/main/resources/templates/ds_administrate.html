@@ -65,93 +65,100 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 
-<div class="wraper">
+<div class="wraper" style="background-color: white">
     <div th:include="fragments/navbars :: headerNavbar"></div>
     <div class="clearfix">
     </div>
-    <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="content-main">
+    <div id="page-wrapper" class="dashbard-1">
+        <div class="w3-container">
             <!--banner-->
-            <div class="banner">
+            <div class="banner content-header">
                 <h2>
                     <a href="#" th:href="@{/main}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dyscount systems</span>
                     <i class="fa fa-angle-right"></i>
-                    <a href="#" th:href="@{/main}">Admisitrate dyscount systems</a>
+                    <a href="#" th:href="@{/main}">Admisitrate discount systems</a>
                 </h2>
             </div>
-            <div id="ds" class="gray-bg w3-card-24 w3-margin">
-                <legend>Discount systems</legend>
-                <table id="dss" align="center" class="table table-condensed table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>Url</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <!--/*@thymesVar id="ds" type="java.util.List<ua.kravchenko.youq.entity.Ds>"*/-->
-                    <tbody class="list">
-                    <tr th:each="i : ${ds}">
-                        <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info_ds/'+${i.name}}"
-                               th:text="${i.name}"></a></td>
-                        <td th:text="${i.title}"></td>
-                        <td th:text="${i.url}"></td>
-                        <td>
-                            <form id="edit-form" name="form"
-                                  th:action="@{${#httpServletRequest.getRequestURL()}+'/edit/'+${i.name}}"
-                                  method="get" th:method="get">
-                                <div class="text-center pull-left w3-padding">
-                                    <button class="w3-btn w3-hover-purple  w3-white w3-border center-block w3-round-large"
-                                            th:id="post">
-                                        Edit
-                                    </button>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <form id="delete-form" name="form"
-                                  th:action="@{${#httpServletRequest.getRequestURL()} + '/delete/'+${i.id}}"
-                                  method="get" th:method="post">
-                                <div class="text-center pull-left w3-padding">
-                                    <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
-                                            th:id="delete">
-                                        Delete
-                                    </button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <ul class="pagination center-block">
-                        <li><a href="#">«</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                    <script src="http://listjs.com/assets/javascripts/list.min.js"
-                            th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
-                    <script th:inline="javascript">
-                        var options = {
-                            valueNames: ['name', 'title', 'url', '', ''],
-                            page: 5,
-                            plugins: [
-                                ListPagination({})
-                            ]
-                        };
-                        var dslist = new List('ds', options);
-                    </script>
-                </table>
+            <!--content-->
+            <div class="w3-row">
+                <div id="ds" class="w3-margin" style="background-color: white; border-color: #c7ddef">
 
+                    <legend align="center">Discount systems</legend>
+                    <table align="center" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Url</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <!--/*@thymesVar id="ds" type="java.util.List<ua.kravchenko.youq.entity.Ds>"*/-->
+                        <tbody class="list">
+                        <tr th:each="i : ${ds}">
+                            <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info_ds/'+${i.name}}"
+                                   th:text="${i.name}"></a></td>
+                            <td th:text="${i.title}"></td>
+                            <td th:text="${i.url}"></td>
+                            <td style="display: inline-flex">
+                                <form id="edit-form" name="form"
+                                      th:action="@{${#httpServletRequest.getRequestURL()}+'/edit/'+${i.name}}"
+                                      method="get" th:method="get">
+                                    <div class="text-center pull-left w3-padding">
+                                        <button class="w3-btn w3-hover-purple  w3-white w3-border center-block w3-round-large"
+                                                th:id="post">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <form id="delete-form" name="form"
+                                      th:action="@{${#httpServletRequest.getRequestURL()} + '/delete/'+${i.id}}"
+                                      method="get" th:method="post">
+                                    <div class="text-center pull-left w3-padding">
+                                        <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
+                                                th:id="delete">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                            <!--<td class="pull-left">
+
+                            </td>-->
+                        </tr>
+                        </tbody>
+                        <ul class="pagination center-block">
+                            <li><a href="#">«</a></li>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                        <script src="http://listjs.com/assets/javascripts/list.min.js"
+                                th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
+                        <script th:inline="javascript">
+                            var options = {
+                                valueNames: ['name', 'title', 'url', '', ''],
+                                page: 5,
+                                plugins: [
+                                    ListPagination({})
+                                ]
+                            };
+                            var dslist = new List('ds', options);
+                        </script>
+                    </table>
+
+                </div>
             </div>
+
         </div>
     </div>
     <div class="copy">

@@ -6,10 +6,8 @@
     <title>Title</title>
 </head>
 <body>
-
 <!--/*@thymesVar id="ds" type="ua.kravchenko.youq.entity.Ds"*/-->
 <div class="container" th:fragment="info">
-
     <div class="w3-card-24 w3-border w3-margin">
         <div class="panel panel-info">
             <div class="w3-row">
@@ -26,88 +24,62 @@
                 <div class="panel-body">
                     <div class="row" style="display: inline;">
 
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                             <tr></tr>
                             <tr></tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Name:</td>
+                                <th>Name:</th>
                                 <td th:text="*{ds.title}"></td>
-                                <td><label for="logo" style="display:inline-block;">Logo: </label>
-                                    <div class="" style="display: inline-block; position: absolute;">
-                                        <img style="border:solid; border-color: #0d0d0d"
-                                             th:with="maurl = @{'/data/image/small/'+${ds.name}}"
-                                             alt="#"
-                                             id="logo"
-                                             th:src="${maurl}" src="#"/>
-                                    </div>
-                                </td>
-
-                                <!--   <td class="pull-right">
-
-                                   </td>
-                                   </td>-->
-
                             </tr>
                             <tr>
-                                <td>Country:</td>
+                                <th>Country:</th>
 
                                 <td th:text="*{ds.country}"></td>
                             </tr>
                             <tr>
-                                <td>Url</td>
+                                <th>Url</th>
                                 <td th:text="*{ds.url}"></td>
                             </tr>
 
                             <tr>
                             <tr>
-                                <td>About DS</td>
+                                <th><p>About DS</p></th>
                                 <td th:text="*{ds.about}">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Code format</td>
+                                <th><p style="display:inline-block;">Logo: </p></th>
+                                <td>
+                                    <img th:with="maurl = @{'/data/image/small/'+${ds.name}}"
+                                         alt="#"
+                                         id="logo"
+                                         th:src="${maurl}" src="#"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Code format</th>
                                 <td th:text="*{ds.codeFormat}"></td>
                             </tr>
                             <tr>
-                                <td>Email</td>
+                                <th>Email</th>
                                 <td th:text="*{ds.colorBg}"></td>
                             </tr>
-                            <td>Color font</td>
+                            <th>Color font</th>
                             <td th:text="*{ds.colorFont}"></td>
-                            <!--  <tr>
-                                  <td>Logo:</td>
-                                  <td>
-                                      <img th:with="maurl = @{'/data/image/small/'+${ds.name}}"
-                                           id="smallimage"
-                                           alt="#"
-                                           th:src="${maurl}" src="#"/>
-                                  </td>
-                              </tr>-->
                             <tr>
-                                <td>Tel name</td>
+                                <th>Tel name</th>
                                 <td th:text="*{ds.telName}"></td>
                             </tr>
                             <tr>
-                                <td>Telephone number</td>
+                                <th>Telephone number</th>
                                 <td th:text="*{ds.telNumber}"></td>
                             </tr>
-
                             </tr>
-
                             </tbody>
                         </table>
-
-                        <!--&lt;!&ndash;th:href="@{'/user/user_profile/orders/' + ${user.login}}"&ndash;&gt;
-                        <a id="show" class="w3-btn w3-hover-purple w3-white w3-border center-block ordersList">Show
-                            my orders</a>
-                        <a id="hide" class="w3-btn w3-hover-red w3-white w3-border center-block">Hide my orders</a>
-                    </div>
-                </div>-->
-
-
                     </div>
                 </div>
                 <div class="panel-footer">

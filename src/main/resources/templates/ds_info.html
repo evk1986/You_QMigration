@@ -65,29 +65,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper" class="wrapper">
 
     <!--navbars-->
 
     <!--header nav-->
-    <div th:replace="fragments/navbars :: headerNavbar" style=""></div>
-
+    <div th:replace="fragments/navbars :: headerNavbar"></div>
     <div class="clearfix">
     </div>
-    <!--bottom nav-->
-    <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="w3-container">
-
-            <!--banner-->
+    <!--EDITINNNNNNG-->
+    <div id="page-wrapper" class="dashbard-1">
+        <div class="content-main">
             <div class="banner">
-
                 <h2>
                     <a href="index.html">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
             </div>
-            <!--banner-->
             <!--content-->
             <div class="content" id="content">
                 <div th:include="fragments/ds_info :: info"></div>
@@ -106,8 +101,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <div class="clearfix"></div>
 
-</div>
+    <!---->
 
+</div>
 <!--scrolling js-->
 <script src="js/jquery.nicescroll.js"
         th:src="@{/js/jquery.nicescroll.js}"></script>

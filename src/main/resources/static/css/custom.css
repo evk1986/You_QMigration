@@ -1,13 +1,19 @@
 #wrapper {
     width: 100%;
 }
+
 #page-wrapper {
     /*--padding: 0 15px;--*/
+
     min-height: 568px;
-    
+
 }
 
-@media(min-width:768px) {
+.dashbard-1 {
+    background-color: #ecf0f5;
+}
+
+@media (min-width: 768px) {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 250px;
@@ -28,7 +34,7 @@
 
 .navbar-top-links li a {
     padding: 15px;
-  
+
 }
 
 .navbar-top-links .dropdown-menu li {
@@ -54,9 +60,11 @@
     width: 310px;
     min-width: 0;
 }
+
 .navbar-top-links .dropdown-messages {
     margin-left: 5px;
 }
+
 .navbar-top-links .dropdown-tasks {
     margin-left: -59px;
 }
@@ -78,6 +86,7 @@
 .sidebar .sidebar-search {
     padding: 15px;
 }
+
 .sidebar .arrow {
     float: right;
 }
@@ -86,26 +95,25 @@
     content: "\f104";
 }
 
-.sidebar .active>a>.fa.arrow:before {
+.sidebar .active > a > .fa.arrow:before {
     content: "\f107";
 }
 
 .sidebar .nav-second-level li,
 .sidebar .nav-third-level li {
-    border-bottom: 0!important;
+    border-bottom: 0 !important;
 }
-
 
 .sidebar .nav-third-level li a {
     padding-left: 52px;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     .sidebar {
         z-index: 1;
         position: absolute;
         width: 250px;
-        
+
     }
 
     .navbar-top-links .dropdown-messages,

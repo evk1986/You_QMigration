@@ -2,22 +2,22 @@ package ua.kravchenko.youq.entity;
 
 
 import org.hibernate.envers.Audited;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
-
 /**
  * Created by Egor on 29.01.2017.
  */
 @Entity
-@Audited(targetAuditMode = NOT_AUDITED)
+@Audited/*(targetAuditMode = NOT_AUDITED)*/
+@EntityListeners(AuditingEntityListener.class)
 public class Country implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -29,6 +29,9 @@ public class Country implements Serializable {
     @OneToMany(mappedBy = "country")
     private List<Ds> discountSystems;
 
+    @OneToMany(mappedBy = "nameRu")
+    private List<Region> regions;
+
     public Country() {
     }
 
@@ -36,6 +39,14 @@ public class Country implements Serializable {
         this.countryName = countryName;
         this.code = code;
         this.id = id;
+    }
+
+    public List<Region> getRegions() {
+        return regions;
+    }
+
+    public void setRegions(List<Region> regions) {
+        this.regions = regions;
     }
 
     public List<Ds> getDiscountSystems() {
