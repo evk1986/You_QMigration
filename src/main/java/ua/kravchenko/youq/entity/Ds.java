@@ -25,30 +25,40 @@ public class Ds implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "subname")
     private String name;
 
     @Column
     private String title;
 
-    @Column(length = 600)
+    @Column(length = 600, name = "license")
     private String about;
 
     @Column
+    private String status;
+
+    @Column
+    private String tags;
+
+    @Column(name = "logo")
     private String img;
 
-    @Column(length = 25)
+    @Column(name = "background_image")
+    private String backImage;
+
+    @Column(length = 25, name = "color")
     private String colorBg;
-    @Column(length = 25)
-    private String colorFont;
+
+    @Column
+    private String authorized;
+
+    @Column
+    private String email;
+
 
     @Column(length = 25)
     private String codeFormat;
 
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
-    @JoinColumn(name = "countryName")
-    private Country country;
 
     @Column(length = 100)
     private String url;
@@ -58,6 +68,15 @@ public class Ds implements Serializable {
 
     @Column(length = 25)
     private String telNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @JoinColumn(name = "country")
+    private Country country;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @JoinColumn(name = "category")
+    private Category category;
+
 
     @Column(name = "created_date", updatable = false, nullable = false)
     @CreatedDate
@@ -77,7 +96,7 @@ public class Ds implements Serializable {
         this.about = about;
         this.codeFormat = codeFormat;
         this.colorBg = colorBg;
-        this.colorFont = colorFont;
+        /*this.colorFont = colorFont;*/
         this.countryId = countryId;
         this.id = id;
         this.img = img;
@@ -88,6 +107,58 @@ public class Ds implements Serializable {
     }
 
     public Ds() {
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getBackImage() {
+        return backImage;
+    }
+
+    public void setBackImage(String backImage) {
+        this.backImage = backImage;
+    }
+
+    public String getAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthorized(String authorized) {
+        this.authorized = authorized;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getCountryId() {
@@ -158,14 +229,6 @@ public class Ds implements Serializable {
         this.colorBg = colorBg;
     }
 
-    public String getColorFont() {
-        return colorFont;
-    }
-
-    public void setColorFont(String colorFont) {
-        this.colorFont = colorFont;
-    }
-
     public String getCodeFormat() {
         return codeFormat;
     }
@@ -219,7 +282,7 @@ public class Ds implements Serializable {
         if (about != null ? !about.equals(ds.about) : ds.about != null) return false;
         if (img != null ? !img.equals(ds.img) : ds.img != null) return false;
         if (colorBg != null ? !colorBg.equals(ds.colorBg) : ds.colorBg != null) return false;
-        if (colorFont != null ? !colorFont.equals(ds.colorFont) : ds.colorFont != null) return false;
+      /*  if (colorFont != null ? !colorFont.equals(ds.colorFont) : ds.colorFont != null) return false;*/
         if (codeFormat != null ? !codeFormat.equals(ds.codeFormat) : ds.codeFormat != null) return false;
         if (country != null ? !country.equals(ds.country) : ds.country != null) return false;
         if (url != null ? !url.equals(ds.url) : ds.url != null) return false;
@@ -236,7 +299,7 @@ public class Ds implements Serializable {
         result = 31 * result + (about != null ? about.hashCode() : 0);
         result = 31 * result + (img != null ? img.hashCode() : 0);
         result = 31 * result + (colorBg != null ? colorBg.hashCode() : 0);
-        result = 31 * result + (colorFont != null ? colorFont.hashCode() : 0);
+       /* result = 31 * result + (colorFont != null ? colorFont.hashCode() : 0);*/
         result = 31 * result + (codeFormat != null ? codeFormat.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
@@ -254,7 +317,7 @@ public class Ds implements Serializable {
                 ", about='" + about + '\'' +
                 ", img='" + img + '\'' +
                 ", colorBg='" + colorBg + '\'' +
-                ", colorFont='" + colorFont + '\'' +
+               /* ", colorFont='" + colorFont + '\'' +*/
                 ", codeFormat='" + codeFormat + '\'' +
                 ", country=" + country +
                 ", url='" + url + '\'' +

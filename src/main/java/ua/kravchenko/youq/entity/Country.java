@@ -29,7 +29,7 @@ public class Country implements Serializable {
     @OneToMany(mappedBy = "country")
     private List<Ds> discountSystems;
 
-    @OneToMany(mappedBy = "nameRu")
+    @OneToMany(mappedBy = "country")
     private List<Region> regions;
 
     public Country() {

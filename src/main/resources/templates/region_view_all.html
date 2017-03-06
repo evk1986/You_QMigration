@@ -20,7 +20,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
     <link href="css/font-awesome.css"
           th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
-
     <script src="/static/js/jquery-3.1.1.min.js"
             th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
     <!-- Mainly scripts -->
@@ -79,33 +78,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
-                <a href="#" th:href="@{/country/add_new_country}">
+                <a href="#" th:href="@{/region/create}">
                     <button class="w3-btn w3-hover-green w3-white w3-border"><i class="fa fa-plus-circle">Add new</i>
                     </button>
                 </a>
 
             </div>
             <!-- <div class="content-top" id="content">-->
-            <div id="country" class="w3-margin" style="background-color: white; border-color: #c7ddef">
-                <legend align="center">Countrys</legend>
-                <table id="countrys" align="center" class="table table-striped">
+            <div id="region" class="w3-margin" style="background-color: white; border-color: #c7ddef">
+                <legend align="center">Regions</legend>
+                <table id="regions" align="center" class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Country name</th>
-                        <th>Code</th>
-                        <th>Controls</th>
+                        <th>Country</th>
+                        <th>Name Ru</th>
+                        <th>Name En</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+                    <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
                     <tbody class="list">
-                    <tr th:each="country : ${countrys}">
-                        <td th:text="${country.id}"></td>
-                        <td th:text="${country.countryName}"></td>
-                        <td th:text="${country.code}"></td>
+                    <tr th:each="region : ${regions}">
+                        <td th:text="${region.id}"></td>
+                        <td th:text="${region.country}"></td>
+                        <td th:text="${region.nameRu}"></td>
+                        <td th:text="${region.nameEn}"></td>
                         <td>
-                            <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
-                                  method="get" th:method="get">
+                            <p th:text="${region.id}"></p>
+                            <form id="form" name="form" th:action="@{'/region/edit?id='+${region.id}}"
+                                  method="post" th:method="post" th:object="${region}">
                                 <div class="text-center pull-left">
                                     <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
                                             th:id="edit">
@@ -131,13 +133,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
                     <script th:inline="javascript">
                         var options = {
-                            valueNames: ['id', 'countryname', 'code', 'controls'],
+                            valueNames: ['id', 'country', 'name ru', 'name en', ''],
                             page: 5,
                             plugins: [
                                 ListPagination({})
                             ]
                         };
-                        var countryList = new List('country', options);
+                        var regionList = new List('regions', options);
                     </script>
                 </table>
 

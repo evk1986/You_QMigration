@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head lang="en">
+
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<div class="container" th:fragment="add_new_region">
+    <div class="w3-row-padding" style="">
+        <div class="w3-margin w3-padding">
+            <div class="panel">
+                <section class="panel-heading">
+                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new Region</h1>
+                </section>
+
+                <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+                <!--/*@thymesVar id="region" type="ua.kravchenko.youq.entity.Region"*/-->
+                <form class="form-horizontal" name="save_new_region"
+                      th:action="@{/region/create}" th:object="${region}"
+                      th:method="POST"
+                >
+
+                    <!--<div class="row">
+                        <div class="col-md-9 col-lg-9">-->
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td><label for="name">Name RU:</label></td>
+                            <td><input type="text" id="name" class="form-control input-sm"
+                                       th:placeholder="${region.nameRu}" th:field="${region.nameRu}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Name EN:</label></td>
+                            <td><input type="text" id="title" class="form-control input-sm"
+                                       th:field="${region.nameEn}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="countrys">Country:</label></td>
+                            <td id="countrys">
+                                <select class="col-sm-6" th:field="${region.country}">
+                                    <option th:each="country : ${countrys}"
+                                            th:value="${country.getId()}"
+                                            th:text="${country.getCountryName()}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Save"
+                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

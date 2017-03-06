@@ -77,7 +77,7 @@ public class DsController {
 
 
         dsModel.setColorBg(ds.getColorBg());
-        dsModel.setColorFont(ds.getColorFont());
+        /*dsModel.setColorFont(ds.getColorFont());*/
         dsModel.setCodeFormat(ds.getCodeFormat());
         dsModel.setCountry(ds.getCountry());
         dsModel.setUrl(ds.getUrl());

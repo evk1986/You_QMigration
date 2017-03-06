@@ -55,7 +55,7 @@ public class ShedulledRevisionDb {
                     ds.getAbout(),
                     ds.getCodeFormat(),
                     ds.getColorBg(),
-                    ds.getColorFont(),
+
                     ds.getCountry().getId(),
                     ds.getId(),
                     ds.getImg(),
