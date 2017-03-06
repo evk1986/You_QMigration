@@ -35,12 +35,16 @@ public class Region implements Serializable {
     @LastModifiedDate
     private long modifiedDate;
 
-    @OneToMany(mappedBy = "region")
+    @OneToMany(mappedBy = "region", cascade = {CascadeType.ALL})
     private List<City> cities;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "countryName")
     private Country country;
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
 
     public long getId() {
         return id;

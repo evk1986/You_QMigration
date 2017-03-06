@@ -69,11 +69,11 @@ public class Ds implements Serializable {
     @Column(length = 25)
     private String telNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country")
     private Country country;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category")
     private Category category;
 
@@ -88,10 +88,9 @@ public class Ds implements Serializable {
 
     private int countryId;
 
-    public Ds(/*String name,*/ String about, String codeFormat, String colorBg,
+    public Ds(String about, String codeFormat, String colorBg,
               String colorFont, int countryId, Long id, String img,
               String telName, String telNumber, String title, String url) {
-
         /*this.name = name;*/
         this.about = about;
         this.codeFormat = codeFormat;

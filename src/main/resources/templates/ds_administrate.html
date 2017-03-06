@@ -76,10 +76,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h2>
                     <a href="#" th:href="@{/main}">Home</a>
                     <i class="fa fa-angle-right"></i>
-                    <span>Dyscount systems</span>
+                    <span>Discount systems</span>
                     <i class="fa fa-angle-right"></i>
                     <a href="#" th:href="@{/main}">Admisitrate discount systems</a>
                 </h2>
+                <a href="#" th:href="@{/ds/add_new_ds}">
+                    <button class="w3-btn w3-hover-green w3-white w3-border"><i class="fa fa-plus-circle">Add new</i>
+                    </button>
+                </a>
             </div>
             <!--content-->
             <div class="w3-row">
@@ -89,9 +93,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <table align="center" class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Id</th>
+                            <th>Country</th>
+                            <th>Category</th>
                             <th>Title</th>
-                            <th>Url</th>
+                            <th>Color</th>
+                            <th>Authorized</th>
+                            <th>Status</th>
+                            <th>Format</th>
+                            <th>Logo</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -114,7 +126,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </button>
                                     </div>
                                 </form>
-
                                 <form id="delete-form" name="form"
                                       th:action="@{${#httpServletRequest.getRequestURL()} + '/delete/'+${i.id}}"
                                       method="get" th:method="post">

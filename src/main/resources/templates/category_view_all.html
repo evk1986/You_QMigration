@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
-                <a href="#" th:href="@{/country/add_new_country}">
+                <a href="#" th:href="@{/category/create-cat}">
                     <button class="w3-btn w3-hover-green w3-white w3-border"><i class="fa fa-plus-circle">Add new</i>
                     </button>
                 </a>
@@ -87,30 +87,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- <div class="content-top" id="content">-->
             <div id="country" class="w3-margin" style="background-color: white; border-color: #c7ddef">
-                <legend align="center">Countrys</legend>
+                <legend align="center">Categories</legend>
                 <table id="countrys" align="center" class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name Ru</th>
-                        <th>Name En</th>
-                        <th>Phone Code</th>
-                        <th>ISO2</th>
-                        <th>ISO3</th>
-                        <th>Controls</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Create At</th>
+                        <th>Update At</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+                    <!--/*@thymesVar id="cat" type="java.util.List<ua.kravchenko.youq.entity.Category>"*/-->
                     <tbody class="list">
-                    <tr th:each="country : ${countrys}">
-                        <td th:text="${country.id}"></td>
-                        <td th:text="${country.nameRu}"></td>
-                        <td th:text="${country.nameEn}"></td>
-                        <td th:text="${country.code}"></td>
-                        <td th:text="${country.codeIso2}"></td>
-                        <td th:text="${country.codeIso3}"></td>
-                        <td  style="display: inline-block">
-                            <form id="form" name="form" th:action="@{'/country/edit/'+${country.getId()}}"
+                    <tr th:each="cat : ${cat}">
+                        <td th:text="${cat.id}"></td>
+                        <td th:text="${cat.name}"></td>
+                        <td th:text="${cat.getStatus()}"></td>
+                        <td th:text="${cat.createdDate}"></td>
+                        <td th:text="${cat.modifiedDate}"></td>
+                        <td style="display: inline-block; max-width:10%">
+                            <form id="form" name="form" th:action="@{'/category/edit/'+${cat.getId()}}"
                                   method="get" th:method="get">
                                 <div class="text-center pull-left">
                                     <button class="w3-btn w3-hover-purple w3-white w3-border w3-round-large"
@@ -121,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </form>
 
                             <form id="delete-form" name="form"
-                                  th:action="@{'/country/delete/'+${country.id}}"
+                                  th:action="@{'/category/delete/'+${cat.id}}"
                                   method="get" th:method="post">
                                 <div class="text-center pull-left">
                                     <button class="w3-btn w3-hover-purple w3-white w3-border w3-round-large"
@@ -148,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
                     <script th:inline="javascript">
                         var options = {
-                            valueNames: ['id', 'countryname', 'code', 'controls'],
+                            valueNames: ['id', 'nameRu', 'nameEn', 'region', 'controls'],
                             page: 5,
                             plugins: [
                                 ListPagination({})

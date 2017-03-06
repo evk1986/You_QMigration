@@ -8,20 +8,19 @@
 
 </head>
 <body>
-<div class="container" th:fragment="add_new_region">
+<div class="container" th:fragment="new_city">
     <div class="w3-row-padding" style="">
         <div class="w3-margin w3-padding">
             <div class="panel">
                 <section class="panel-heading">
-                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new Region</h1>
+                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new City</h1>
                 </section>
 
-                <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
-                <!--/*@thymesVar id="region" type="ua.kravchenko.youq.entity.Region"*/-->
+                <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
+                <!--/*@thymesVar id="city" type="ua.kravchenko.youq.entity.City"*/-->
                 <form class="form-horizontal" name="save_new_region"
-                      th:action="@{/region/create}" th:object="${region}"
-                      th:method="POST"
-                >
+                      th:action="@{/city/create-city}" th:object="${city}"
+                      th:method="POST">
 
                     <!--<div class="row">
                         <div class="col-md-9 col-lg-9">-->
@@ -30,18 +29,18 @@
                         <tr>
                             <td><label for="name">Name RU:</label></td>
                             <td><input type="text" id="name" class="form-control input-sm"
-                                       th:placeholder="${region.nameRu}" th:field="${region.nameRu}"/></td>
+                                       th:placeholder="${city.nameRu}" th:field="${city.nameRu}"/></td>
                         </tr>
                         <tr>
                             <td><label for="title">Name EN:</label></td>
                             <td><input type="text" id="title" class="form-control input-sm"
-                                       th:field="${region.nameEn}"/></td>
+                                       th:field="${city.nameEn}"/></td>
                         </tr>
                         <tr>
-                            <td><label for="countrys">Country:</label></td>
+                            <td><label for="countrys">Region:</label></td>
                             <td id="countrys">
-                                <select class="col-sm-6" th:field="${region.country}">
-                                    <option th:each="country : ${countrys}"
+                                <select class="col-sm-6" th:field="${city.region}">
+                                    <option th:each="country : ${regions}"
                                             th:value="${country.getId()}"
                                             th:text="${country.getNameRu()}"
                                             data-th-required="true">
@@ -49,11 +48,6 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <div th:field="${region.id}" th:text="${region.id}">sdf</div>
-                        </tr>
-
-
                         <tr>
                             <td>
                                 <input type="submit" value="Save"

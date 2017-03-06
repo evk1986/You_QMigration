@@ -7,5 +7,5 @@ import ua.kravchenko.youq.entity.Country;
  * Created by Egor on 29.01.2017.
  */
 public interface CountryRepository extends JpaRepository<Country, Integer> {
-    Country findByCountryName(String countryName);
+    Country findByNameRu(String nameRu);
 }

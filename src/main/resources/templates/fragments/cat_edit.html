@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head lang="en">
+
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<div class="container" th:fragment="edit_cat">
+    <div class="w3-row-padding" style="">
+        <div class="w3-margin w3-padding">
+            <div class="panel">
+                <section class="panel-heading">
+                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new category</h1>
+                </section>
+
+                <!--/*@thymesVar id="cat" type="ua.kravchenko.youq.entity.Category"*/-->
+                <form class="form-horizontal" name="save_new_region"
+                      th:action="@{'/category/edit/'+${cat.id}}" th:object="${cat}"
+                      th:method="POST">
+
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td><label for="name">Name:</label></td>
+                            <td>
+                            <input type="text" id="name" class="form-control input-sm"
+                                      th:field="${cat.name}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="status">Status Activted:</label></td>
+                            <td><select id="status" class="col-sm-6" th:field="${cat.status}">
+                                <option th:value="yes">YES</option>
+                                <option th:value="no">NO</option>
+                            </select>
+                                </td>
+                        </tr>
+                        <!--<tr>
+                            <td><label for="countrys">Region:</label></td>
+                            <td id="countrys">
+                                <select class="col-sm-6" th:field="${city.region}">
+                                <option th:each="country : ${regions}"
+                                        th:value="${country.getId()}"
+                                        th:text="${country.getNameRu()}"
+                                        data-th-required="true">
+                                </option>
+                            </select>
+                            </td>
+                        </tr>-->
+                        <tr>
+                            <td>
+                                <input type="submit" value="Save"
+                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

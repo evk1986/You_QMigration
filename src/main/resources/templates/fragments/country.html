@@ -5,88 +5,67 @@
 
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="/static/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
-    <script src="/static/js/jquery-3.1.1.min.js"
-            th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
-    <script src="webjars/js/bootstrap.min.js"
-            th:src="@{/js/bootstrap.min.js}"></script>
-    <link href="/css/main.css"
-          th:href="@{/css/main.css}"
-          rel="stylesheet" media="screen"/>
-
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"
-          th:href="@{'http://www.w3schools.com/lib/w3.css'}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"
-          th:href="@{'https://fonts.googleapis.com/css?family=Raleway'}"/>
-    <style>
-        body, h1, h2, h3, h4, h5, h6 {
-            font-family: "Raleway", sans-serif
-        }
-
-        .w3-quarter img {
-            margin-bottom: -6px;
-            cursor: pointer
-        }
-
-        .w3-quarter img:hover {
-            opacity: 0.6;
-            transition: 0.3s
-        }
-    </style>
-
 
 </head>
 <body>
-<!--add new country-->
 <div class="container" th:fragment="add_new_country">
-    <div class="w3-row-padding w3-margin" style="">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-            <div class="w3-card-24 w3-border w3-margin">
-                <div class="panel panel-info">
-                    <div class="panel-heading" style="background-color: #D95459;">
-                        <h3 class="panel-title" style="color: white;font-weight: bold; text-transform: capitalize;">Add new
-                            country</h3>
-                    </div>
-                    <!--/*@thymesVar id="country" type="ua.kravchenko.youq.entity.Country"*/-->
-                    <form class="panel-body form-horizontal" name="save_new_ds"
-                          th:action="@{/country/add_new_country}" th:object="${country}"
-                          th:method="PUT">
+    <div class="w3-row-padding" style="">
+        <div class="w3-margin w3-padding">
+            <div class="panel">
+                <section class="panel-heading">
+                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new Region</h1>
+                </section>
 
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-9 col-lg-9 ">
-                                    <table class="table table-user-information table-striped">
-                                        <tbody>
 
-                                        <tr>
-                                            <td><label for="name">Country Name:</label></td>
-                                            <td><input type="text" id="name" class="form-control input-sm"
-                                                       th:field="*{countryName}"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="code">Code:</label></td>
-                                            <td><input type="text" id="code" class="form-control input-sm"
-                                                       th:field="*{code}"/></td>
-                                        </tr>
+                <!--/*@thymesVar id="country" type="ua.kravchenko.youq.entity.Country"*/-->
+                <form class="form-horizontal" name="save_new_region"
+                      th:action="@{/country/add_new_country}" th:object="${country}"
+                      th:method="PUT"
+                >
 
-                                        </tbody>
-                                    </table>
-                                    <div th:align="center" class="panel-footer">
-                                        <input type="submit" value="Save"
-                                               class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-                                        <input href="#" type="reset" value="Cancel"
-                                               class="w3-btn w3-hover-red w3-white w3-border center-block"/>
+                    <!--<div class="row">
+                        <div class="col-md-9 col-lg-9">-->
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td><label for="name">Name RU:</label></td>
+                            <td><input type="text" id="name" class="form-control input-sm"
+                                       th:placeholder="${country.nameRu}" th:field="${country.nameRu}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Name EN:</label></td>
+                            <td><input type="text" id="title" class="form-control input-sm"
+                                       th:field="${country.nameEn}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Phone Code:</label></td>
+                            <td><input type="text" id="code" class="form-control input-sm"
+                                       th:field="${country.code}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Code ISO2:</label></td>
+                            <td><input type="text" id="iso2" class="form-control input-sm"
+                                       th:field="${country.codeIso2}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Code ISO3:</label></td>
+                            <td><input type="text" id="iso3" class="form-control input-sm"
+                                       th:field="${country.codeIso3}"/></td>
+                        </tr>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </form>
-                </div>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Save"
+                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </form>
             </div>
+
         </div>
     </div>
 </div>

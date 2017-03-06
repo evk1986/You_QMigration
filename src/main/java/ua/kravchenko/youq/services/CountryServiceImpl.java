@@ -44,7 +44,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country findByName(String countryName) {
-        return repository.findByCountryName(countryName);
+        return repository.findByNameRu(countryName);
     }
 
     @Override

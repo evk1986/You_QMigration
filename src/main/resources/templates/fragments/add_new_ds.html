@@ -90,7 +90,7 @@
                                 <select th:field="*{country}">
                                     <option th:each="country : ${countrys}"
                                             th:value="${country.getId()}"
-                                            th:text="${country.getCountryName()}"
+                                            th:text="${country.getNameRu()}"
                                             data-th-required="true">
 
                                     </option>

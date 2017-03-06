@@ -26,8 +26,7 @@ public class City implements Serializable {
     @Column(name = "name_en")
     private String nameEn;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.PERSIST})
-    @JoinColumn(name = "regionId")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Region region;
 
     @Column(name = "created_date", updatable = false, nullable = false)
@@ -104,15 +103,6 @@ public class City implements Serializable {
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = nameRu.hashCode();
-        result = 31 * result + (nameEn != null ? nameEn.hashCode() : 0);
-        result = 31 * result + (region != null ? region.hashCode() : 0);
-        result = 31 * result + (int) (createdDate ^ (createdDate >>> 32));
-        result = 31 * result + (int) (modifiedDate ^ (modifiedDate >>> 32));
-        return result;
-    }
 
     @Override
     public String toString() {
