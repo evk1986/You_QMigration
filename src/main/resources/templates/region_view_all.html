@@ -106,8 +106,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <td th:text="${region.nameEn}"></td>
                         <td>
                             <p th:text="${region.id}"></p>
-                            <form id="form" name="form" th:action="@{'/region/edit?id='+${region.id}}"
-                                  method="post" th:method="post" th:object="${region}">
+                            <form id="form" name="form" th:action="@{'/region/edit/'+${region.id}}"
+                                  method="get" th:method="get" th:object="${region}">
                                 <div class="text-center pull-left">
                                     <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
                                             th:id="edit">

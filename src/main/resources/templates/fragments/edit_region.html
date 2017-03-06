@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div class="container" th:fragment="add_new_region">
+<div class="container" th:fragment="update_region">
     <div class="w3-row-padding" style="">
         <div class="w3-margin w3-padding">
             <div class="panel">
@@ -19,7 +19,7 @@
                 <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
                 <!--/*@thymesVar id="region" type="ua.kravchenko.youq.entity.Region"*/-->
                 <form class="form-horizontal" name="save_new_region"
-                      th:action="@{/region/create}" th:object="${region}"
+                      th:action="@{'/region/edit/'+${region.id}}" th:object="${region}"
                       th:method="POST"
                 >
 
