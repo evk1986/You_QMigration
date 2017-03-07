@@ -13,14 +13,18 @@
         <div class="w3-margin w3-padding">
             <div class="panel">
                 <section class="panel-heading">
-                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new City</h1>
+                    <h1 class="panel-title"
+                        align="center"
+                        style="font-weight: bold;
+                        text-transform: capitalize;
+                        font-size: 30px;">Add new City</h1>
                 </section>
 
                 <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
                 <!--/*@thymesVar id="city" type="ua.kravchenko.youq.entity.City"*/-->
                 <form class="form-horizontal" name="save_new_region"
                       th:action="@{/city/create-city}" th:object="${city}"
-                      th:method="POST">
+                      th:method="PUT">
 
                     <!--<div class="row">
                         <div class="col-md-9 col-lg-9">-->
@@ -28,17 +32,18 @@
                         <tbody>
                         <tr>
                             <td><label for="name">Name RU:</label></td>
-                            <td><input type="text" id="name" class="form-control input-sm"
+                            <td><input type="text" id="name" class="form-control"
                                        th:placeholder="${city.nameRu}" th:field="${city.nameRu}"/></td>
                         </tr>
                         <tr>
                             <td><label for="title">Name EN:</label></td>
-                            <td><input type="text" id="title" class="form-control input-sm"
+                            <td><input type="text" id="title" class="form-control"
                                        th:field="${city.nameEn}"/></td>
                         </tr>
                         <tr>
                             <td><label for="countrys">Region:</label></td>
                             <td id="countrys">
+
                                 <select class="col-sm-6" th:field="${city.region}">
                                     <option th:each="country : ${regions}"
                                             th:value="${country.getId()}"

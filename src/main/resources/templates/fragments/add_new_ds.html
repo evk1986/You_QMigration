@@ -30,18 +30,18 @@
                         <tbody>
                         <tr>
                             <td><label for="name">Name:</label></td>
-                            <td><input type="text" id="name" class="form-control input-sm"
+                            <td><input type="text" id="name" class="form-control "
                                        th:placeholder="${ds.name}" th:field="*{name}"/></td>
                         </tr>
 
                         <tr>
                             <td><label for="title">Title:</label></td>
-                            <td><input type="text" id="title" class="form-control input-sm"
+                            <td><input type="text" id="title" class="form-control "
                                        th:placeholder="${ds.title}" th:field="*{title}"/></td>
                         </tr>
                         <tr>
                             <td><label for="about">About:</label></td>
-                            <td><textarea rows="10" type="text" id="about" class="form-control input-sm"
+                            <td><textarea rows="10" type="text" id="about" class="form-control "
                                           th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
                         </tr>
                         <tr>
@@ -59,22 +59,23 @@
                         <tr>
                             <td><label for="color_bg">Background Color:</label></td>
                             <td><input type="text" id="color_bg"
-                                       class="form-control input-sm"
+                                       class="form-control "
                                        th:placeholder="${ds.colorBg}" th:field="*{colorBg}"/></td>
                         </tr>
-                       <!-- <tr>
-                            <td><label for="color_font">Color font:</label></td>
+                        <!-- <tr>
+                             <td><label for="color_font">Color font:</label></td>
 
-                            <td><input type="text" id="color_font"
-                                       class="form-control input-sm"
-                                       th:placeholder="${ds.colorFont}" th:field="*{colorFont}"/></td>
-                        </tr>-->
+                             <td><input type="text" id="color_font"
+                                        class="form-control input-sm"
+                                        th:placeholder="${ds.colorFont}" th:field="*{colorFont}"/></td>
+                         </tr>-->
                         <tr>
 
                             <td><label for="code_format">Code format:</label></td>
                             <td>
-                                <select id="code_format" th:field="*{codeFormat}">
-                                    <option th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
+                                <select id="code_format" class="col-sm-6" th:field="*{codeFormat}">
+                                    <option class="col-sm-6"
+                                            th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
                                             th:value="${format}"
                                             th:text="${format.getDisplayedName()}"
                                             th:placeholder="${ds.codeFormat}"
@@ -87,8 +88,8 @@
                         <tr>
                             <td><label for="countrys">Country:</label>
                             <td id="countrys">
-                                <select th:field="*{country}">
-                                    <option th:each="country : ${countrys}"
+                                <select class="col-sm-6" th:field="*{country}">
+                                    <option class="col-sm-6" th:each="country : ${countrys}"
                                             th:value="${country.getId()}"
                                             th:text="${country.getNameRu()}"
                                             data-th-required="true">
@@ -101,21 +102,21 @@
                         </tr>
                         <tr>
                             <td><label for="tel_name">Tel name:</label></td>
-                            <td><input type="text" id="tel_name" class="form-control input-sm"
+                            <td><input type="text" id="tel_name" class="form-control "
                                        th:placeholder="${ds.telName}" th:field="*{telName}"/>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="tel_number">Tel number:</label></td>
                             <td><input type="text" id="tel_number"
-                                       class="form-control input-sm"
+                                       class="form-control "
                                        th:placeholder="${ds.telNumber}" th:field="*{telNumber}"/>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="url">Url:</label></td>
                             <td><input type="text" id="url"
-                                       class="form-control input-sm"
+                                       class="form-control "
                                        th:placeholder="${ds.url}" th:field="*{url}"/>
                             </td>
                         </tr>

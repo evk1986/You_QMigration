@@ -93,27 +93,6 @@ public class RegionController {
 
     }
 
-
-    /* System.out.println("upcoming from model = " + region.toString());
-        System.out.println("upcoming from DB = " + regionService.findOneById(region.getId()).toString());
-        if (regionService.findOneById(region.getId()) != null) {
-            regionModel = regionService.findOneById(region.getId());
-            System.out.println("region MOdel = " + regionModel.toString());
-                if (!regionModel.getNameRu().equals(region.getNameRu())) {
-                    regionModel.setNameRu(region.getNameRu());
-                }
-                if (!regionModel.getNameEn().equals(region.getNameEn())) {
-                    regionModel.setNameEn(region.getNameEn());
-                }
-                if (!regionModel.getCountry().equals(region.getCountry())) {
-                    regionModel.setCountry(region.getCountry());
-                }
-            regionService.save(regionModel);
-            System.out.println(regionModel);
-            List<Region> regions = regionService.findAll();
-            model.addAttribute("regions", regions);
-            return "redirect:/region/viewall";
-        } */
     private Region convertingModel(Region region) {
         Region model = new Region();
         model.setNameEn(region.getNameEn());

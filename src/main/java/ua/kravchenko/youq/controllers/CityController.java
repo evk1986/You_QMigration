@@ -43,7 +43,7 @@ public class CityController {
         return "city_create";
     }
 
-    @RequestMapping(value = "/create-city", method = RequestMethod.POST)
+    @RequestMapping(value = "/create-city", method = RequestMethod.PUT)
     public String createNewRegion(@ModelAttribute(value = "city")
                                           City city, BindingResult bindingResult,
                                   Model model) {
