@@ -24,6 +24,10 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
          registry.addViewController("/calendar").setViewName("calendar");
     }
+   /* @Bean
+    public Java8TimeDialect java8TimeDialect() {
+        return new Java8TimeDialect();
+    }*/
 
     @Bean
     public TemplateResolver templateResolver() {

@@ -104,18 +104,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th>Logo</th>
                             <th>Created at</th>
                             <th>Updated at</th>
-                            <th></th>
+                            <th>Controls</th>
                             <th></th>
                         </tr>
                         </thead>
                         <!--/*@thymesVar id="ds" type="java.util.List<ua.kravchenko.youq.entity.Ds>"*/-->
                         <tbody class="list">
                         <tr th:each="i : ${ds}">
+                            <td th:text="${i.id}"></td>
                             <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info_ds/'+${i.name}}"
                                    th:text="${i.name}"></a></td>
-                            <td th:text="${i.title}"></td>
-                            <td th:text="${i.url}"></td>
-                            <td style="display: inline-flex">
+                            <td th:text="${i.country}"></td>
+                            <td th:text="${i.category}"></td>
+                            <td th:text="${i.colorBg}"></td>
+                            <td th:text="${i.authorized}"></td>
+                            <td th:text="${i.status}"></td>
+                            <td th:text="${i.codeFormat}"></td>
+                            <td><img th:with="maurl = @{'/data/image/small/'+${i.name}}"
+                                     id="smallimage"
+                                     alt="#"
+                                     th:src="${maurl}" src="#"
+                            /></td>
+                            <!--сделать дату создания и дату модификации как дейт-->
+                           <!-- <td>
+
+                                &lt;!&ndash;<p  th:text="${#temporals.format(${date}, 'dd/MMM/yyyy HH:mm')}">sss</p>&ndash;&gt;
+                                <p>
+                                    <strong
+                                            th:with="date = ${@{'/data/gettime/'+${i.name}}}"
+
+                                            th:text="${#dates.format(date,'dd/MMM/yyyy HH:mm')}">31/12/2015
+                                        15:00</strong>
+                                </p>
+                            </td>-->
+
+                            <td th:text="${i.modifiedDate}"></td>
+                            <td style="display: inline-block">
                                 <form id="edit-form" name="form"
                                       th:action="@{${#httpServletRequest.getRequestURL()}+'/edit/'+${i.name}}"
                                       method="get" th:method="get">

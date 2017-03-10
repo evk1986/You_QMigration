@@ -13,15 +13,14 @@
         <div class="w3-margin w3-padding">
             <div class="panel">
                 <section class="panel-heading">
-                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new Region</h1>
+                    <h1 class="panel-title" align="center" style="font-weight: bold; text-transform: capitalize;">Update
+                        region information</h1>
                 </section>
-
                 <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
                 <!--/*@thymesVar id="region" type="ua.kravchenko.youq.entity.Region"*/-->
                 <form class="form-horizontal" name="save_new_region"
                       th:action="@{'/region/edit/'+${region.id}}" th:object="${region}"
-                      th:method="POST"
-                >
+                      th:method="POST">
 
                     <!--<div class="row">
                         <div class="col-md-9 col-lg-9">-->
@@ -50,7 +49,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <div th:field="${region.id}" th:text="${region.id}">sdf</div>
+                            <div class="w3-margin" th:field="${region.id}">
+                                <p style="font-size: 35px; font-style: italic;font-weight: bold "
+                                   th:text="'Region: '+${region.nameRu}+'.'"></p>
+                            </div>
                         </tr>
 
 

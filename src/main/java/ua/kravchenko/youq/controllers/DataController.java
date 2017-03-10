@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.kravchenko.youq.entity.Ds;
+import ua.kravchenko.youq.entity.GenericResponse;
 import ua.kravchenko.youq.services.DsService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Date;
 
 /**
  * Created by Egor on 10.02.2017.
@@ -57,6 +59,16 @@ public class DataController {
         return downloadDataFromUrl(myTransformedUrlImage);
     }
 
+    @ResponseBody()
+    @RequestMapping(value = "/gettime/{name}", method = RequestMethod.GET)
+    public GenericResponse getTime(@PathVariable("name") String name, Model model, HttpServletResponse response) throws Exception {
+        System.out.println("im here");
+        Ds currentDs = dsService.findByName(name);
+        GenericResponse data = new GenericResponse();
+        data.setDate(Date.valueOf(String.valueOf(currentDs.getCreatedDate())));
+        System.out.println(data.toString());
+        return data;
+    }
 
     /**
      * Download data from url
