@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head lang="en">
+
+    <title>Work Time</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<div class="container" th:fragment="work_times">
+    <div class="w3-row-padding" style="">
+        <div class="w3-margin w3-padding">
+            <div class="panel">
+                <section class="panel-heading">
+                    <h1 class="panel-title"
+                        align="center"
+                        style="font-weight: bold;
+                        text-transform: capitalize;
+                        font-size: 30px;">Work time</h1>
+                </section>
+
+
+                    <!--<div class="row">
+                        <div class="col-md-9 col-lg-9">-->
+                    <table class="table table-striped">
+                        <title>Work time</title>
+                        <tbody>
+
+                       <!-- <tr>
+                            <th><p>About DS</p></th>
+                            <td th:text="*{ds.about}">
+                            </td>
+                        </tr>-->
+
+                        <tr>
+                            <th><p>Monday</p></th>
+                            <td><input type="text" class="form-control"
+                                       th:field="${city.nameRu}"/></td>
+                            <td><input type="text"  class="form-control"
+                                       th:field="${city.nameRu}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">Name EN:</label></td>
+                            <td><input type="text" id="title" class="form-control"
+                                       th:field="${city.nameEn}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="countrys">Region:</label></td>
+                            <td id="countrys">
+
+                                <select class="col-sm-6" th:field="${city.region}">
+                                    <option th:each="country : ${regions}"
+                                            th:value="${country.getId()}"
+                                            th:text="${country.getNameRu()}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Save"
+                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

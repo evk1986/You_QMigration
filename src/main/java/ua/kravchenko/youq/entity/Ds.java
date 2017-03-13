@@ -324,7 +324,7 @@ public class Ds implements Serializable {
                 '}';
     }
 
-    public String dateFormating(long time){
+    public static String dateFormating(long time){
         String date = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date (time*1000));
         return date;
     }

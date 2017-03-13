@@ -16,6 +16,7 @@ import ua.kravchenko.youq.services.ShopMallService;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,7 +67,6 @@ public class ShopMallController {
                            HttpServletRequest req,
                            @RequestPart("image") MultipartFile file,
                            @RequestPart("backImage") MultipartFile secondImage) throws IOException {
-        System.out.println(sm.toString());
         ShopMall smModel = null;
         if (shopMallService.findByName(sm.getName()) != null) {
             smModel = shopMallService.findByName(sm.getName());
@@ -76,23 +76,21 @@ public class ShopMallController {
         smModel.setName(sm.getName());
         smModel.setTitle(sm.getTitle());
         smModel.setAbout(sm.getAbout());
+        /*logo*/
         if (!file.isEmpty()) {
             byte[] img = file.getBytes();
             smModel.setImg(shopMallService.uploadPhoto(img));
         }
-        smModel.setColorBg(sm.getColorBg());
-        /*dsModel.setColorFont(ds.getColorFont());*/
-       /* smModel.setCodeFormat(sm.getCodeFormat());*/
-
-        smModel.setUrl(sm.getUrl());
-        smModel.setTelNumber(sm.getTelNumber());
-        smModel.setTelName(sm.getTelName());
-        smModel.setAddAdress(sm.getAddAdress());
-        /*background image*/
+         /*background image*/
         if (!secondImage.isEmpty()) {
             byte[] img = secondImage.getBytes();
             smModel.setBackImage(shopMallService.uploadPhoto(img));
         }
+        smModel.setColorBg(sm.getColorBg());
+        smModel.setUrl(sm.getUrl());
+        smModel.setTelNumber(sm.getTelNumber());
+        smModel.setTelName(sm.getTelName());
+        smModel.setAddAdress(sm.getAddAdress());
         smModel.setEmail(sm.getEmail());
         smModel.setLatitude(sm.getLatitude());
         smModel.setLongtitude(sm.getLongtitude());
@@ -101,10 +99,17 @@ public class ShopMallController {
         smModel.setStreet(sm.getStreet());
         smModel.setRegion(sm.getRegion());
         smModel.setCountry(sm.getCountry());
+        smModel.setCity(sm.getCity());
         smModel.setSubName(sm.getSubName());
-
+        List<WorkDay> wd = new ArrayList<>(7);
+        System.out.println(wd.size());
+        for (int i = 0; i < sm.getWorkDays().size(); i++) {
+            System.out.println(sm.getWorkDays().get(i));
+            wd.add(sm.getWorkDays().get(i));
+        }
+        smModel.setWorkDays(wd);
         shopMallService.save(smModel);
-        return "redirect:" + req.getContextPath() + "/shopmall/viewall";
+        return "redirect:" + req.getContextPath() + "/shop-mall/viewall";
     }
 
     @RequestMapping(value = "/viewall", method = RequestMethod.GET)

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.kravchenko.youq.entity.Ds;
 import ua.kravchenko.youq.entity.GenericResponse;
+import ua.kravchenko.youq.entity.ShopMall;
 import ua.kravchenko.youq.services.DsService;
+import ua.kravchenko.youq.services.ShopMallService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -34,10 +36,14 @@ public class DataController {
     @Autowired
     Cloudinary cloudinary;
 
+    @Autowired
+    ShopMallService smService;
 
     @ResponseBody()
     @RequestMapping(value = "/image/small/{name}", method = RequestMethod.GET)
-    public byte[] getImage(@PathVariable("name") String name, Model model, HttpServletResponse response) throws Exception {
+    public byte[] getImage(@PathVariable("name") String name,
+                           Model model,
+                           HttpServletResponse response) throws Exception {
         Api api = cloudinary.api();
         Ds ds = dsService.findByName(name);
         System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
@@ -55,6 +61,24 @@ public class DataController {
      /*   System.out.println(url);
         System.out.println("object.toString:  " + object.toString());
         System.out.println(s.toString());*/
+        URL myTransformedUrlImage = new URL(url);
+        return downloadDataFromUrl(myTransformedUrlImage);
+    }
+
+    @ResponseBody()
+    @RequestMapping(value = "/image/small/mall/{name}", method = RequestMethod.GET)
+    public byte[] getImage(@PathVariable("name") String name,
+                           Model model) throws Exception {
+        Api api = cloudinary.api();
+        ShopMall ds = smService.findByName(name);
+        System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
+        JSONObject object = new JSONObject(api.resource(ds.getImg(), ObjectUtils.emptyMap()));
+        JSONArray s = object.getJSONArray("derived");
+        String url = null;
+        for (int i = 0; i < s.length(); i++) {
+            JSONObject jBuffer = s.getJSONObject(i);
+            url = jBuffer.getString("url");
+        }
         URL myTransformedUrlImage = new URL(url);
         return downloadDataFromUrl(myTransformedUrlImage);
     }

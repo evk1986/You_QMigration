@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div class="container" th:fragment="add_new_ds">
+<div class="container" th:fragment="add_new_sm">
     <div class="w3-row-padding" style="">
         <div class="w3-margin w3-padding">
             <div class="panel">
@@ -58,69 +58,141 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                <label for="secondImage">Upload background image</label>
+                            </td>
+                            <td>
+                                <div class="col-md-4">
+                                    <input th:required="false" id="secondImage" name="backImage" class="input-file"
+                                           type="file"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><label for="color_bg">Background Color:</label></td>
                             <td><input type="text" id="color_bg"
                                        class="form-control "
                                        th:placeholder="${sm.colorBg}" th:field="*{colorBg}"/></td>
                         </tr>
-                        <!-- <tr>
-                             <td><label for="color_font">Color font:</label></td>
-
-                             <td><input type="text" id="color_font"
-                                        class="form-control input-sm"
-                                        th:placeholder="${ds.colorFont}" th:field="*{colorFont}"/></td>
-                         </tr>-->
                         <tr>
 
-                            <td><label for="code_format">Code format:</label></td>
+                            <td><label for="addAdress">Additional adress:</label></td>
                             <td>
-                                <select id="code_format" class="col-sm-6" th:field="*{codeFormat}">
-                                    <option class="col-sm-6"
-                                            th:each="format : ${T(ua.kravchenko.youq.entity.Codes).values}"
-                                            th:value="${format}"
-                                            th:text="${format.getDisplayedName()}"
-                                            th:placeholder="${ds.codeFormat}"
-                                            th:required="true" data-th-required="true">
-                                    </option>
-                                </select>
-                            </td>
+                                <input type="text" id="addAdress"
+                                       class="form-control "
+                                       th:placeholder="${sm.addAdress}" th:field="*{addAdress}"/></td>
+
                         </tr>
 
                         <tr>
-                            <td><label for="countrys">Country:</label>
-                            <td id="countrys">
-                                <select class="col-sm-6" th:field="*{country}">
-                                    <option class="col-sm-6" th:each="country : ${countrys}"
-                                            th:value="${country.getId()}"
-                                            th:text="${country.getNameRu()}"
-                                            data-th-required="true">
+                            <td><label for="email">Email:</label></td>
+                            <td>
+                                <input type="email" id="email"
+                                       class="form-control "
+                                       th:placeholder="${sm.email}" th:field="*{email}"/></td>
 
-                                    </option>
-                                </select>
-                            </td>
+                        </tr>
 
+
+                        <tr>
+                            <td><label for="status">Status:</label></td>
+                            <td><select id="status" class="col-sm-6" th:field="${sm.status}">
+                                <option th:value="yes">activate</option>
+                                <option th:value="no">delete</option>
+                            </select>
                             </td>
                         </tr>
+
                         <tr>
                             <td><label for="tel_name">Tel name:</label></td>
                             <td><input type="text" id="tel_name" class="form-control "
-                                       th:placeholder="${ds.telName}" th:field="*{telName}"/>
+                                       th:placeholder="${sm.telName}" th:field="*{telName}"/>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="tel_number">Tel number:</label></td>
                             <td><input type="text" id="tel_number"
                                        class="form-control "
-                                       th:placeholder="${ds.telNumber}" th:field="*{telNumber}"/>
+                                       th:placeholder="${sm.telNumber}" th:field="*{telNumber}"/>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="url">Url:</label></td>
                             <td><input type="text" id="url"
                                        class="form-control "
-                                       th:placeholder="${ds.url}" th:field="*{url}"/>
+                                       th:placeholder="${sm.url}" th:field="*{url}"/>
                             </td>
                         </tr>
+                        <!--Adress block-->
+
+
+                        <tr>
+                            <td><label for="countrys">Country:</label></td>
+                            <td id="countrys">
+                                <select class="col-sm-6" th:field="*{country}">
+                                    <option class="col-sm-6" th:each="country : ${countrys}"
+                                            th:value="${country.getId()}"
+                                            th:text="${country.getNameRu()}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><label for="countrys">Region:</label></td>
+                            <td id="regions">
+                                <select class="col-sm-6" th:field="*{region}">
+                                    <option class="col-sm-6" th:each="region : ${regions}"
+                                            th:value="${region.getId()}"
+                                            th:text="${region.getNameRu()}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><label for="city">City:</label></td>
+                            <td id="city">
+                                <select class="col-sm-6" th:field="*{city}">
+                                    <option class="col-sm-6" th:each="city : ${cities}"
+                                            th:value="${city.id}"
+                                            th:text="${city.nameRu}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><label for="street">Street:</label></td>
+                            <td><input type="text" id="street"
+                                       class="form-control "
+                                       th:placeholder="${sm.street}" th:field="*{street}"/>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td><label for="postCode">Post code:</label></td>
+                            <td>
+                                <input type="text" id="postcode"
+                                       class="form-control "
+                                       th:placeholder="${sm.postCode}" th:field="*{postCode}"/></td>
+
+                        </tr>
+
+                        <tr th:colspan="3">
+                            <th><p>Monday</p></th>
+                            <td><input type="text" th:field="*{workDays[0].start}"/></td>
+                            <td><input type="text" th:field="*{workDays[0].end}"/></td>
+                        </tr>
+
+
                         <tr>
                             <td>
                                 <input type="submit" value="Save"

@@ -92,7 +92,7 @@ public class ShopMall {
     @LastModifiedDate
     private long modifiedDate;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "shedule")
     private List<WorkDay> workDays = new ArrayList<>(7);
 
