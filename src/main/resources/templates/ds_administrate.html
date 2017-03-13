@@ -126,19 +126,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                      th:src="${maurl}" src="#"
                             /></td>
                             <!--сделать дату создания и дату модификации как дейт-->
-                           <!-- <td>
-
-                                &lt;!&ndash;<p  th:text="${#temporals.format(${date}, 'dd/MMM/yyyy HH:mm')}">sss</p>&ndash;&gt;
+                            <td>
                                 <p>
                                     <strong
-                                            th:with="date = ${@{'/data/gettime/'+${i.name}}}"
-
-                                            th:text="${#dates.format(date,'dd/MMM/yyyy HH:mm')}">31/12/2015
+                                            th:text="${i.dateFormating(i.getCreatedDate())}">31/12/2015
                                         15:00</strong>
                                 </p>
-                            </td>-->
+                            </td>
 
-                            <td th:text="${i.modifiedDate}"></td>
+                            <td>
+                                <p>
+                                    <strong
+                                            th:text="${i.dateFormating(i.modifiedDate)}">31/12/2015
+                                        15:00</strong>
+                                </p>
+                            </td>
                             <td style="display: inline-block">
                                 <form id="edit-form" name="form"
                                       th:action="@{${#httpServletRequest.getRequestURL()}+'/edit/'+${i.name}}"

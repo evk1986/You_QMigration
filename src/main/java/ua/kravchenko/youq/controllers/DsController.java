@@ -101,6 +101,7 @@ public class DsController {
         System.out.println(countrys);
         model.addAttribute("ds", ds);
         model.addAttribute("countrys", countrys);
+        System.out.println("date " + ds.dateFormating(ds.getCreatedDate()));
         return "ds_info";
     }
 

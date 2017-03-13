@@ -2,7 +2,6 @@ package ua.kravchenko.youq.entity;
 
 import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedDate;
-
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -323,5 +322,10 @@ public class Ds implements Serializable {
                 ", telName='" + telName + '\'' +
                 ", telNumber='" + telNumber + '\'' +
                 '}';
+    }
+
+    public String dateFormating(long time){
+        String date = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date (time*1000));
+        return date;
     }
 }
