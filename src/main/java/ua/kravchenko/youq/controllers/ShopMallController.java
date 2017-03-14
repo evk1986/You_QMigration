@@ -103,11 +103,13 @@ public class ShopMallController {
         smModel.setSubName(sm.getSubName());
         List<WorkDay> wd = new ArrayList<>(7);
         System.out.println(wd.size());
+        System.out.println(sm.getWorkDays().size());
         for (int i = 0; i < sm.getWorkDays().size(); i++) {
             System.out.println(sm.getWorkDays().get(i));
             wd.add(sm.getWorkDays().get(i));
         }
         smModel.setWorkDays(wd);
+        System.out.println(smModel.getWorkDays().toString());
         shopMallService.save(smModel);
         return "redirect:" + req.getContextPath() + "/shop-mall/viewall";
     }
@@ -118,6 +120,19 @@ public class ShopMallController {
         model.addAttribute("sm", sm);
         return "sm_view_all";
     }
+
+    @RequestMapping(value = "/testing", method = RequestMethod.GET)
+    public String test(Model model) {
+        List<ShopMall> sm = shopMallService.findAll();
+
+        for (int i = 0; i < sm.size(); i++) {
+            System.out.println(sm.get(i).toString());
+        }
+
+        return "sm_view_all";
+    }
+
+
 /*
 
     @RequestMapping(value = "/administrate_ds/info_ds/{name}", method = RequestMethod.GET)

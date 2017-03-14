@@ -1,20 +1,17 @@
 package ua.kravchenko.youq.entity;
 
 import org.hibernate.envers.Audited;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
-
-import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
 
 /**
  * Created by Егор on 09.03.2017.
  */
 @Entity
-@Audited(targetAuditMode = NOT_AUDITED)
+@Audited
+@EntityListeners(AuditingEntityListener.class)
 public class WorkDay implements Serializable {
     @Id
     @GeneratedValue
@@ -58,8 +55,14 @@ public class WorkDay implements Serializable {
         this.end = end;
     }
 
-
-    public static WorkDay workDayCreate() {
-        return new WorkDay();
+    @Override
+    public String toString() {
+        return "WorkDay{" +
+                "id=" + id +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                '}';
     }
+
+
 }

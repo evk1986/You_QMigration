@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ua.kravchenko.youq.entity.Category;
 import ua.kravchenko.youq.entity.Country;
 import ua.kravchenko.youq.entity.Ds;
+import ua.kravchenko.youq.services.CategoryService;
 import ua.kravchenko.youq.services.CountryService;
 import ua.kravchenko.youq.services.DsService;
 
@@ -29,6 +31,8 @@ public class DsController {
 
     @Autowired
     DsService dsService;
+    @Autowired
+    CategoryService categoryService;
 
     @Autowired
     CountryService countryService;
@@ -46,9 +50,11 @@ public class DsController {
     public String getMyDs(Model model) {
         Ds ds = new Ds();
         List<Country> countrys = countryService.findAll();
+        List<Category> categories = categoryService.findAll();
         System.out.println(countrys);
         model.addAttribute("ds", ds);
         model.addAttribute("countrys", countrys);
+        model.addAttribute("categories", categories);
         return "ds_add_new";
     }
 
@@ -66,7 +72,7 @@ public class DsController {
             dsModel = new Ds();
         }
         dsModel.setName(ds.getName());
-        dsModel.setName(ds.getName());
+        dsModel.setStatus(ds.getStatus());
         dsModel.setTitle(ds.getTitle());
         dsModel.setAbout(ds.getAbout());
         // dsModel.setImg(ds.getImg());
@@ -74,8 +80,6 @@ public class DsController {
             byte[] img = file.getBytes();
             dsModel.setImg(dsService.uploadPhoto(img));
         }
-
-
         dsModel.setColorBg(ds.getColorBg());
         /*dsModel.setColorFont(ds.getColorFont());*/
         dsModel.setCodeFormat(ds.getCodeFormat());
@@ -83,6 +87,7 @@ public class DsController {
         dsModel.setUrl(ds.getUrl());
         dsModel.setTelNumber(ds.getTelNumber());
         dsModel.setTelName(ds.getTelName());
+        dsModel.setCategory(ds.getCategory());
         dsService.save(dsModel);
         return "redirect:" + req.getContextPath() + "/ds/administrate_ds";
     }
@@ -109,9 +114,11 @@ public class DsController {
     public String editDsView(Model model, @PathVariable("name") String name, HttpServletRequest req) {
         Ds ds = dsService.findByName(name);
         List<Country> countrys = countryService.findAll();
+        List<Category> categories = categoryService.findAll();
         System.out.println(countrys);
         model.addAttribute("ds", ds);
         model.addAttribute("countrys", countrys);
+        model.addAttribute("categories", categories);
         return "ds_edit";
     }
 

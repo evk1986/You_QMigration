@@ -45,6 +45,14 @@
                                           th:placeholder="${ds.about}" th:field="*{about}"></textarea></td>
                         </tr>
                         <tr>
+                            <td><label for="status">Status:</label></td>
+                            <td><select id="status" class="col-sm-6" th:field="${ds.status}">
+                                <option th:value="yes">activate</option>
+                                <option th:value="no">delete</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr>
 
                             <td>
                                 <label for="image">Upload logo</label>
@@ -100,6 +108,23 @@
 
                             </td>
                         </tr>
+                        <!--/*@thymesVar id="categories" type="java.util.List<ua.kravchenko.youq.entity.Category>"*/-->
+                        <tr>
+                            <td><label for="category">Category:</label>
+                            <td id="category">
+                                <select class="col-sm-6" th:field="*{category}">
+
+                                    <option class="col-sm-6" th:each="country : ${categories}"
+                                            th:value="${country.getId()}"
+                                            th:text="${country.name}"
+                                            data-th-required="true">
+                                    </option>
+                                </select>
+                            </td>
+
+                            </td>
+                        </tr>
+
                         <tr>
                             <td><label for="tel_name">Tel name:</label></td>
                             <td><input type="text" id="tel_name" class="form-control "

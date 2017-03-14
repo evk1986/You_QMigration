@@ -94,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Name</th>
                             <th>Country</th>
                             <th>Category</th>
                             <th>Title</th>
@@ -115,30 +116,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info_ds/'+${i.name}}"
                                    th:text="${i.name}"></a></td>
                             <td th:text="${i.country}"></td>
-                            <td th:text="${i.category}"></td>
+                            <td th:text="${i.category.name}"></td>
+                            <td th:text="${i.title}"></td>
                             <td th:text="${i.colorBg}"></td>
                             <td th:text="${i.authorized}"></td>
                             <td th:text="${i.status}"></td>
                             <td th:text="${i.codeFormat}"></td>
-                            <td><img th:with="maurl = @{'/data/image/small/'+${i.name}}"
+                            <td><img style="max-width: 125px; max-height: inherit;"
+                                     th:with="maurl = @{'/data/image/small/'+${i.name}}"
                                      id="smallimage"
-                                     alt="#"
+                                     alt="logo"
                                      th:src="${maurl}" src="#"
                             /></td>
-                            <!--сделать дату создания и дату модификации как дейт-->
                             <td>
-
-                                <!--<p  th:text="${#temporals.format(${date}, 'dd/MMM/yyyy HH:mm')}">sss</p>-->
-                                <p>
-                                    <strong
-
-
-                                            th:text="${#dates.format(date,'dd/MMM/yyyy HH:mm')}">31/12/2015
-                                        15:00</strong>
+                                <p th:text="${T(ua.kravchenko.youq.entity.Ds).dateFormating(i.createdDate)}">
+                                    31/12/2015 15:00
                                 </p>
                             </td>
 
-                            <td th:text="${i.modifiedDate}"></td>
+                            <td>
+                                <p>
+                                    <strong
+                                            th:text="${T(ua.kravchenko.youq.entity.Ds).dateFormating(i.modifiedDate)}">31/12/2015
+                                        15:00</strong>
+                                </p>
+                            </td>
                             <td style="display: inline-block">
                                 <form id="edit-form" name="form"
                                       th:action="@{${#httpServletRequest.getRequestURL()}+'/edit/'+${i.name}}"

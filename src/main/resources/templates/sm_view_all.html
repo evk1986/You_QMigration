@@ -115,7 +115,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <td><img th:with="maurl = @{'/data/image/small/mall/'+${i.name}}"
                                      id="smallimage"
                                      alt="#"
-                                     th:src="${maurl}" src="#"
+                                     th:src="${maurl}" src="logo"
+                                     style="max-height: inherit;max-width: 150px;"
                             /></td>
                             <td th:text="${i.status}"></td>
                             <!--сделать дату создания и дату модификации как дейт-->

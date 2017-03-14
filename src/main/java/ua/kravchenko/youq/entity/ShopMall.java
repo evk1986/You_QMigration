@@ -92,8 +92,8 @@ public class ShopMall {
     @LastModifiedDate
     private long modifiedDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "shedule")
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "workDays")
     private List<WorkDay> workDays = new ArrayList<>(7);
 
     public List<WorkDay> getWorkDays() {
@@ -349,5 +349,33 @@ public class ShopMall {
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "ShopMall{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", subName='" + subName + '\'' +
+                ", title='" + title + '\'' +
+                ", about='" + about + '\'' +
+                ", status='" + status + '\'' +
+                ", img='" + img + '\'' +
+                ", backImage='" + backImage + '\'' +
+                ", colorBg='" + colorBg + '\'' +
+                ", email='" + email + '\'' +
+                ", url='" + url + '\'' +
+                ", telName='" + telName + '\'' +
+                ", telNumber='" + telNumber + '\'' +
+                ", country=" + country +
+                ", region=" + region +
+                ", city=" + city +
+                ", street='" + street + '\'' +
+                ", addAdress='" + addAdress + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longtitude='" + longtitude + '\'' +
+                ", createdDate=" + createdDate +
+                ", modifiedDate=" + modifiedDate +
+                ", workDays=" + workDays +
+                '}';
+    }
 }
