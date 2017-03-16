@@ -15,6 +15,7 @@ import java.util.List;
 public interface ShopMallRepository extends JpaRepository<ShopMall, Long>, RevisionRepository<ShopMall, Long, Integer> {
 
     ShopMall findByName(String name);
+    ShopMall findById(Long id);
 
     @Query(value = "SELECT s.id FROM shop_mall s", nativeQuery = true)
     List<BigInteger> findAllDsId();

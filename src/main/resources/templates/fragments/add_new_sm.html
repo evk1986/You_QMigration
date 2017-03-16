@@ -12,10 +12,7 @@
     <div class="w3-row-padding" style="">
         <div class="w3-margin w3-padding">
             <div class="panel">
-                <section class="panel-heading">
-                    <h1 class="panel-title" style="font-weight: bold; text-transform: capitalize;">Add new
-                        discount-system</h1>
-                </section>
+
                 <!--/*@thymesVar id="sm" type="ua.kravchenko.youq.entity.ShopMall"*/-->
                 <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
                 <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
@@ -25,219 +22,230 @@
                       th:method="PUT"
                       enctype="multipart/form-data">
 
+
+                    <fieldset style="border-bottom: none; border-left: none;
+border-right: none;">
+                        <legend th:align="center" class="panel-title"
+                                style="font-weight: bold; text-transform: capitalize;">Add new
+                            discount-system
+                        </legend>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><label for="name">Name:</label></td>
+                                <td><input type="text" id="name" class="form-control "
+                                           th:placeholder="${sm.name}" th:field="*{name}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="subname">Name:</label></td>
+                                <td><input type="text" id="subname" class="form-control "
+                                           th:placeholder="${sm.subName}" th:field="*{subName}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="title">Title:</label></td>
+                                <td><input type="text" id="title" class="form-control "
+                                           th:placeholder="${sm.title}" th:field="*{title}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="about">About:</label></td>
+                                <td><textarea rows="10" type="text" id="about" class="form-control "
+                                              th:placeholder="${sm.about}" th:field="*{about}"></textarea></td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <label for="image">Upload logo</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-4">
+                                        <input th:required="false" id="image" name="image" class="input-file"
+                                               type="file"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="secondImage">Upload background image</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-4">
+                                        <input th:required="false" id="secondImage" name="backImage" class="input-file"
+                                               type="file"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="color_bg">Background Color:</label></td>
+                                <td><input type="text" id="color_bg"
+                                           class="form-control "
+                                           th:placeholder="${sm.colorBg}" th:field="*{colorBg}"/></td>
+                            </tr>
+                            <tr>
+
+                                <td><label for="addAdress">Additional adress:</label></td>
+                                <td>
+                                    <input type="text" id="addAdress"
+                                           class="form-control "
+                                           th:placeholder="${sm.addAdress}" th:field="*{addAdress}"/></td>
+
+                            </tr>
+
+                            <tr>
+                                <td><label for="email">Email:</label></td>
+                                <td>
+                                    <input type="email" id="email"
+                                           class="form-control "
+                                           th:placeholder="${sm.email}" th:field="*{email}"/></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td><label for="status">Status:</label></td>
+                                <td><select id="status" class="col-sm-6" th:field="${sm.status}">
+                                    <option th:value="yes">activate</option>
+                                    <option th:value="no">delete</option>
+                                </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label for="tel_name">Tel name:</label></td>
+                                <td><input type="text" id="tel_name" class="form-control "
+                                           th:placeholder="${sm.telName}" th:field="*{telName}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="tel_number">Tel number:</label></td>
+                                <td><input type="text" id="tel_number"
+                                           class="form-control "
+                                           th:placeholder="${sm.telNumber}" th:field="*{telNumber}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="url">Url:</label></td>
+                                <td><input type="text" id="url"
+                                           class="form-control "
+                                           th:placeholder="${sm.url}" th:field="*{url}"/>
+                                </td>
+                            </tr>
+                            <!--Adress block-->
+
+
+                            <tr>
+                                <td><label for="countrys">Country:</label></td>
+                                <td id="countrys">
+                                    <select class="col-sm-6" th:field="*{country}">
+                                        <option class="col-sm-6" th:each="country : ${countrys}"
+                                                th:value="${country.getId()}"
+                                                th:text="${country.getNameRu()}"
+                                                data-th-required="true">
+                                        </option>
+                                    </select>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td><label for="countrys">Region:</label></td>
+                                <td id="regions">
+                                    <select class="col-sm-6" th:field="*{region}">
+                                        <option class="col-sm-6" th:each="region : ${regions}"
+                                                th:value="${region.getId()}"
+                                                th:text="${region.getNameRu()}"
+                                                data-th-required="true">
+                                        </option>
+                                    </select>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td><label for="city">City:</label></td>
+                                <td id="city">
+                                    <select class="col-sm-6" th:field="*{city}">
+                                        <option class="col-sm-6" th:each="city : ${cities}"
+                                                th:value="${city.id}"
+                                                th:text="${city.nameRu}"
+                                                data-th-required="true">
+                                        </option>
+                                    </select>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td><label for="street">Street:</label></td>
+                                <td><input type="text" id="street"
+                                           class="form-control "
+                                           th:placeholder="${sm.street}" th:field="*{street}"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td><label for="postCode">Post code:</label></td>
+                                <td>
+                                    <input type="text" id="postcode"
+                                           class="form-control "
+                                           th:placeholder="${sm.postCode}" th:field="*{postCode}"/></td>
+
+                            </tr>
+
+                            <th:block th:class="container" th:name="worktime" th:id="worktime">
+                                <tr>
+                                    <td><h3 th:align="center">Work time</h3></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th th:align="right"><p>Monday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[0].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[0].end}"/></td>
+                                </tr>
+
+                                <tr th:colspan="3">
+                                    <th><p>Tuesday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[1].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[1].end}"/></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th><p>Wednesday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[2].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[2].end}"/></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th><p>Thursday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[3].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[3].end}"/></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th><p>Friday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[4].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[4].end}"/></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th><p>Saturday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[5].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[5].end}"/></td>
+                                </tr>
+                                <tr th:colspan="3">
+                                    <th><p>Sunday</p></th>
+                                    <td><p>Start</p><input type="text" th:field="*{workDays[6].start}"/></td>
+                                    <td><p>End</p><input type="text" th:field="*{workDays[6].end}"/></td>
+                                </tr>
+
+                            </th:block>
+
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Save"
+                                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
                     <!--<div class="row">
                         <div class="col-md-9 col-lg-9">-->
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <td><label for="name">Name:</label></td>
-                            <td><input type="text" id="name" class="form-control "
-                                       th:placeholder="${sm.name}" th:field="*{name}"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="subname">Name:</label></td>
-                            <td><input type="text" id="subname" class="form-control "
-                                       th:placeholder="${sm.subName}" th:field="*{subName}"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="title">Title:</label></td>
-                            <td><input type="text" id="title" class="form-control "
-                                       th:placeholder="${sm.title}" th:field="*{title}"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="about">About:</label></td>
-                            <td><textarea rows="10" type="text" id="about" class="form-control "
-                                          th:placeholder="${sm.about}" th:field="*{about}"></textarea></td>
-                        </tr>
-                        <tr>
-
-                            <td>
-                                <label for="image">Upload logo</label>
-                            </td>
-                            <td>
-                                <div class="col-md-4">
-                                    <input th:required="false" id="image" name="image" class="input-file"
-                                           type="file"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="secondImage">Upload background image</label>
-                            </td>
-                            <td>
-                                <div class="col-md-4">
-                                    <input th:required="false" id="secondImage" name="backImage" class="input-file"
-                                           type="file"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="color_bg">Background Color:</label></td>
-                            <td><input type="text" id="color_bg"
-                                       class="form-control "
-                                       th:placeholder="${sm.colorBg}" th:field="*{colorBg}"/></td>
-                        </tr>
-                        <tr>
-
-                            <td><label for="addAdress">Additional adress:</label></td>
-                            <td>
-                                <input type="text" id="addAdress"
-                                       class="form-control "
-                                       th:placeholder="${sm.addAdress}" th:field="*{addAdress}"/></td>
-
-                        </tr>
-
-                        <tr>
-                            <td><label for="email">Email:</label></td>
-                            <td>
-                                <input type="email" id="email"
-                                       class="form-control "
-                                       th:placeholder="${sm.email}" th:field="*{email}"/></td>
-
-                        </tr>
-
-
-                        <tr>
-                            <td><label for="status">Status:</label></td>
-                            <td><select id="status" class="col-sm-6" th:field="${sm.status}">
-                                <option th:value="yes">activate</option>
-                                <option th:value="no">delete</option>
-                            </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><label for="tel_name">Tel name:</label></td>
-                            <td><input type="text" id="tel_name" class="form-control "
-                                       th:placeholder="${sm.telName}" th:field="*{telName}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="tel_number">Tel number:</label></td>
-                            <td><input type="text" id="tel_number"
-                                       class="form-control "
-                                       th:placeholder="${sm.telNumber}" th:field="*{telNumber}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="url">Url:</label></td>
-                            <td><input type="text" id="url"
-                                       class="form-control "
-                                       th:placeholder="${sm.url}" th:field="*{url}"/>
-                            </td>
-                        </tr>
-                        <!--Adress block-->
-
-
-                        <tr>
-                            <td><label for="countrys">Country:</label></td>
-                            <td id="countrys">
-                                <select class="col-sm-6" th:field="*{country}">
-                                    <option class="col-sm-6" th:each="country : ${countrys}"
-                                            th:value="${country.getId()}"
-                                            th:text="${country.getNameRu()}"
-                                            data-th-required="true">
-                                    </option>
-                                </select>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td><label for="countrys">Region:</label></td>
-                            <td id="regions">
-                                <select class="col-sm-6" th:field="*{region}">
-                                    <option class="col-sm-6" th:each="region : ${regions}"
-                                            th:value="${region.getId()}"
-                                            th:text="${region.getNameRu()}"
-                                            data-th-required="true">
-                                    </option>
-                                </select>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td><label for="city">City:</label></td>
-                            <td id="city">
-                                <select class="col-sm-6" th:field="*{city}">
-                                    <option class="col-sm-6" th:each="city : ${cities}"
-                                            th:value="${city.id}"
-                                            th:text="${city.nameRu}"
-                                            data-th-required="true">
-                                    </option>
-                                </select>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td><label for="street">Street:</label></td>
-                            <td><input type="text" id="street"
-                                       class="form-control "
-                                       th:placeholder="${sm.street}" th:field="*{street}"/>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><label for="postCode">Post code:</label></td>
-                            <td>
-                                <input type="text" id="postcode"
-                                       class="form-control "
-                                       th:placeholder="${sm.postCode}" th:field="*{postCode}"/></td>
-
-                        </tr>
-
-                        <tr th:colspan="3">
-                            <th><p>Monday</p></th>
-                            <td><input type="text" th:field="*{workDays[0].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[0].end}"/></td>
-                        </tr>
-                        d><input type="text" th:field="*{workDays[1].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Tuesday</p></th>
-                            <td><input type="text" th:field="*{workDays[1].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[1].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Wednesday</p></th>
-                            <td><input type="text" th:field="*{workDays[2].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[2].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Thursday</p></th>
-                            <td><input type="text" th:field="*{workDays[3].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[3].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Friday</p></th>
-                            <td><input type="text" th:field="*{workDays[4].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[4].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Saturday</p></th>
-                            <td><input type="text" th:field="*{workDays[5].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[5].end}"/></td>
-                        </tr>
-                        <tr th:colspan="3">
-                            <th><p>Sunday</p></th>
-                            <td><input type="text" th:field="*{workDays[6].start}"/></td>
-                            <td><input type="text" th:field="*{workDays[6].end}"/></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="submit" value="Save"
-                                       class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-                            </td>
-
-
-                        </tr>
-                        </tbody>
-                    </table>
 
 
                     <!-- <div class="col-sm-6">

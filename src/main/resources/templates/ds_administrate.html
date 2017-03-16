@@ -116,7 +116,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info_ds/'+${i.name}}"
                                    th:text="${i.name}"></a></td>
                             <td th:text="${i.country}"></td>
-                            <td th:text="${i.category.name}"></td>
+                            <td th:if="${i.category.name}!=null" th:text="${i.category.name}"></td>
+                            <td th:if="${i.category.name}==null" th:text="'no category'"></td>
                             <td th:text="${i.title}"></td>
                             <td th:text="${i.colorBg}"></td>
                             <td th:text="${i.authorized}"></td>

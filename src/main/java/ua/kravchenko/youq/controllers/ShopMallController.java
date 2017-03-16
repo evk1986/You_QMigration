@@ -15,6 +15,7 @@ import ua.kravchenko.youq.services.ShopMallService;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,21 @@ public class ShopMallController {
     @RequestMapping(value = "/add-new-mall", method = RequestMethod.GET)
     public String getMyDs(Model model) {
         ShopMall sm = new ShopMall();
+        List<Country> countrys = countryService.findAll();
+        List<Region> regions = regionService.findAll();
+        List<City> cities = cityService.findAll();
+        model.addAttribute("sm", sm);
+        model.addAttribute("cities", cities);
+        model.addAttribute("regions", regions);
+        model.addAttribute("countrys", countrys);
+        return "sm_add_new";
+    }
+
+    /*дает сбой!*/
+    @RequestMapping(value = "/edit/{name}", method = RequestMethod.GET)
+    public String getMyDs(@PathParam("name") String name, Model model) {
+        ShopMall sm = shopMallService.findByName(name);
+        System.out.println(sm.toString());
         List<Country> countrys = countryService.findAll();
         List<Region> regions = regionService.findAll();
         List<City> cities = cityService.findAll();
