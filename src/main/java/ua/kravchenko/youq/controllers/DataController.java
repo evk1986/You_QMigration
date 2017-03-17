@@ -46,7 +46,7 @@ public class DataController {
                            HttpServletResponse response) throws Exception {
         Api api = cloudinary.api();
         Ds ds = dsService.findByName(name);
-        System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
+        //    System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
         JSONObject object = new JSONObject(api.resource(ds.getImg(), ObjectUtils.emptyMap()));
         JSONArray s = object.getJSONArray("derived");
         String format = null;
@@ -66,19 +66,39 @@ public class DataController {
     }
 
     @ResponseBody()
-    @RequestMapping(value = "/image/small/mall/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/image/small/mall/{name}/logo", method = RequestMethod.GET)
     public byte[] getImage(@PathVariable("name") String name,
                            Model model) throws Exception {
         Api api = cloudinary.api();
         ShopMall ds = smService.findByName(name);
         System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
         JSONObject object = new JSONObject(api.resource(ds.getImg(), ObjectUtils.emptyMap()));
-        JSONArray s = object.getJSONArray("derived");
+        JSONArray apiResourceCloudinary = new JSONArray();
+        apiResourceCloudinary = object.getJSONArray("derived");
+        System.out.println("logo" + apiResourceCloudinary);
         String url = null;
-        for (int i = 0; i < s.length(); i++) {
-            JSONObject jBuffer = s.getJSONObject(i);
+        for (int i = 0; i < apiResourceCloudinary.length(); i++) {
+            JSONObject jBuffer = apiResourceCloudinary.getJSONObject(i);
+            System.out.println("JbUFFER = " + jBuffer.toString());
             url = jBuffer.getString("url");
+            System.out.println(url);
         }
+        URL myTransformedUrlImage = new URL(url);
+
+        return downloadDataFromUrl(myTransformedUrlImage);
+    }
+
+    @ResponseBody()
+    @RequestMapping(value = "/image/small/mall/{name}/back", method = RequestMethod.GET)
+    public byte[] getBackImage(@PathVariable("name") String name,
+                               Model model) throws Exception {
+        Api api = cloudinary.api();
+        ShopMall ds = smService.findByName(name);
+        System.out.println("api resource: " + api.resource(ds.getBackImage(), ObjectUtils.emptyMap()));
+        JSONObject object = new JSONObject(api.resource(ds.getBackImage(), ObjectUtils.emptyMap()));
+        JSONArray apiResourceCloudinary = new JSONArray();
+        String url = (String) object.get("url");
+        System.out.println("object to String" + object.toString());
         URL myTransformedUrlImage = new URL(url);
         return downloadDataFromUrl(myTransformedUrlImage);
     }

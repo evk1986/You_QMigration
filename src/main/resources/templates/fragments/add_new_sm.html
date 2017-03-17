@@ -5,7 +5,18 @@
 
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script th:inline="javascript">
 
+        $(document).ready(function(){
+            $('.img-zoom').hover(function() {
+                $(this).addClass('transition');
+
+            }, function() {
+                $(this).removeClass('transition');
+            });
+        });
+
+    </script>
 </head>
 <body>
 <div class="container" th:fragment="add_new_sm">
@@ -52,14 +63,20 @@ border-right: none;">
                                               th:placeholder="${sm.about}" th:field="*{about}"></textarea></td>
                             </tr>
                             <tr>
-
                                 <td>
                                     <label for="image">Upload logo</label>
                                 </td>
                                 <td>
-                                    <div class="col-md-4">
-                                        <input th:required="false" id="image" name="image" class="input-file"
-                                               type="file"/>
+                                    <div class="col-md-4 logo"  id="logo" th:if="${sm.img!=null}">
+                                        <img class="img-zoom" th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/logo'}"
+                                             id="smallimage"
+                                             alt="#"
+                                             th:src="${maurl}" src="#"
+                                        />
+                                    </div>
+                                    <div class="col-md-4" style="margin-left: 5px; margin-top: 5px;">
+                                        <input th:required="false" id="image" name="image"
+                                               class="file" type="file"/>
                                     </div>
                                 </td>
                             </tr>
@@ -68,7 +85,14 @@ border-right: none;">
                                     <label for="secondImage">Upload background image</label>
                                 </td>
                                 <td>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" th:if="${sm.backImage!=null}">
+                                        <img class="img-zoom" th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/back'}"
+                                             id="backImage"
+                                             alt="#"
+                                             th:src="${maurl}" src="#"
+                                        />
+                                    </div>
+                                    <div class="col-sm-4">
                                         <input th:required="false" id="secondImage" name="backImage" class="input-file"
                                                type="file"/>
                                     </div>

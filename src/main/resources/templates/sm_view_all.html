@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    th:text="${i.name}"></a></td>
                             <td th:text="${i.subName}"></td>
                             <td th:text="${i.url}"></td>
-                            <td><img th:with="maurl = @{'/data/image/small/mall/'+${i.name}}"
+                            <td><img th:with="maurl = @{'/data/image/small/mall/'+${i.name}+'/logo'}"
                                      id="smallimage"
                                      alt="#"
                                      th:src="${maurl}" src="logo"
@@ -147,9 +147,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </button>
                                     </div>
                                 </form>
+
                                 <form id="delete-form" name="form"
                                       th:action="@{${#httpServletRequest.getRequestURL()} + '/delete/'+${i.id}}"
-                                      method="get" th:method="post">
+                                      th:method="delete">
                                     <div class="text-center pull-left w3-padding">
                                         <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
                                                 th:id="delete">

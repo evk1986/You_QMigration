@@ -15,7 +15,6 @@ import ua.kravchenko.youq.services.ShopMallService;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class ShopMallController {
 
     /*дает сбой!*/
     @RequestMapping(value = "/edit/{name}", method = RequestMethod.GET)
-    public String getMyDs(@PathParam("name") String name, Model model) {
+    public String getMyDs(@PathVariable("name") String name, Model model) {
         ShopMall sm = shopMallService.findByName(name);
         System.out.println(sm.toString());
         List<Country> countrys = countryService.findAll();
@@ -137,23 +136,17 @@ public class ShopMallController {
         return "sm_view_all";
     }
 
-    @RequestMapping(value = "/testing", method = RequestMethod.GET)
-    public String test(Model model) {
-        List<ShopMall> sm = shopMallService.findAll();
 
-        for (int i = 0; i < sm.size(); i++) {
-            System.out.println(sm.get(i).toString());
-        }
-
-        return "sm_view_all";
+    @RequestMapping(value = "/viewall/delete/{id}", method = RequestMethod.DELETE)
+    public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
+        shopMallService.delete(id);
+        return "redirect:" + req.getContextPath() + "/shop-mall/viewall";
     }
-
-
 /*
 
     @RequestMapping(value = "/administrate_ds/info_ds/{name}", method = RequestMethod.GET)
     public String infoViewDs(Model model, @PathVariable("name") String name, HttpServletRequest req) {
-        Ds ds = shopMallService.findByName(name);
+        Ds ds = service.findByName(name);
         List<Country> countrys = countryService.findAll();
         System.out.println(countrys);
         model.addAttribute("ds", ds);
@@ -164,7 +157,7 @@ public class ShopMallController {
 
     @RequestMapping(value = "/administrate_ds/edit/{name}", method = RequestMethod.GET)
     public String editDsView(Model model, @PathVariable("name") String name, HttpServletRequest req) {
-        Ds ds = shopMallService.findByName(name);
+        Ds ds = service.findByName(name);
         List<Country> countrys = countryService.findAll();
         System.out.println(countrys);
         model.addAttribute("ds", ds);
@@ -184,7 +177,7 @@ public class ShopMallController {
 
     @RequestMapping(value = "/administrate_ds/delete/{id}", method = RequestMethod.POST)
     public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
-        shopMallService.delete(id);
+        service.delete(id);
         return "redirect:" + req.getContextPath() + "/ds/administrate_ds";
     }
 */
