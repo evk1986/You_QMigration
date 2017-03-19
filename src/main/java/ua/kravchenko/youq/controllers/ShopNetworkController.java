@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Egor on 29.01.2017.
  */
 @Controller
-@RequestMapping(value = "/shop-network")
+@RequestMapping(value = "/shop-networks")
 public class ShopNetworkController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class ShopNetworkController {
     public String getMyDs(Model model) {
         ShopNetwork shopNetwork = new ShopNetwork();
         List<Country> countrys = countryService.findAll();
-        model.addAttribute("shopNetwork", shopNetwork);
+        model.addAttribute("network", shopNetwork);
         model.addAttribute("countrys", countrys);
         return "network_add_new";
     }
@@ -47,13 +47,13 @@ public class ShopNetworkController {
         ShopNetwork shopNetwork = service.findByName(name);
         System.out.println(shopNetwork.toString());
         List<Country> countrys = countryService.findAll();
-        model.addAttribute("sm", shopNetwork);
+        model.addAttribute("network", shopNetwork);
         model.addAttribute("countrys", countrys);
         return "network_add_new";
     }
 
     @RequestMapping(value = "/save-network", method = RequestMethod.PUT)
-    public String saveMyDs(@ModelAttribute(value = "shopNetwork")
+    public String saveMyDs(@ModelAttribute(value = "network")
                                    ShopNetwork shopNetwork, BindingResult bindingResult,
                            Model model,
                            HttpServletRequest req,
@@ -85,21 +85,21 @@ public class ShopNetworkController {
         shopNetworkModel.setCountry(shopNetwork.getCountry());
         shopNetworkModel.setColor(shopNetwork.getColor());
         service.save(shopNetworkModel);
-        return "redirect:" + req.getContextPath() + "/shop-network/viewall";
+        return "redirect:" + req.getContextPath() + "/shop-networks/viewall";
     }
 
     @RequestMapping(value = "/viewall", method = RequestMethod.GET)
-    public String deleteCountry(Model model) {
+    public String viewAll(Model model) {
         List<ShopNetwork> shopNetworks = service.findAll();
-        model.addAttribute("shopNetworks", shopNetworks);
-        return "sm_view_all";
+        model.addAttribute("networks", shopNetworks);
+        return "network_view_all";
     }
 
 
     @RequestMapping(value = "/viewall/delete/{id}", method = RequestMethod.DELETE)
     public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
         service.delete(id);
-        return "redirect:" + req.getContextPath() + "/shop-mall/viewall";
+        return "redirect:" + req.getContextPath() + "/shop-networks/viewall";
     }
 
 }

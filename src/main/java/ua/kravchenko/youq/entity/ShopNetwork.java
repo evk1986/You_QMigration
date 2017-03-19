@@ -63,6 +63,9 @@ public class ShopNetwork {
     @ManyToOne(fetch = FetchType.EAGER)
     private Country country;
 
+    public ShopNetwork() {
+    }
+
     public Long getId() {
         return id;
     }

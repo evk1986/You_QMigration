@@ -1,0 +1,170 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head lang="en">
+
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script th:inline="javascript">
+
+        $(document).ready(function () {
+            $('.img-zoom').hover(function () {
+                $(this).addClass('transition');
+
+            }, function () {
+                $(this).removeClass('transition');
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="container" th:fragment="add_new_network">
+    <div class="w3-row-padding" style="">
+        <div class="w3-margin w3-padding">
+            <div class="panel">
+
+                <!--/*@thymesVar id="network" type="ua.kravchenko.youq.entity.ShopNetwork"*/-->
+                <!--/*@thymesVar id="countrys" type="java.util.List<ua.kravchenko.youq.entity.Country>"*/-->
+
+                <form class="form-horizontal" name="save_new_ds"
+                      th:action="@{/shop-networks/save-network}" th:object="${network}"
+                      th:method="PUT"
+                      enctype="multipart/form-data">
+
+
+                    <fieldset style="border-bottom: none; border-left: none;
+border-right: none;">
+                        <legend th:align="center" class="panel-title"
+                                style="font-weight: bold; text-transform: capitalize;">Add new shopnetwork
+                        </legend>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><label for="name">Name:</label></td>
+                                <td><input type="text" id="name" class="form-control"
+                                       th:field="*{name}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="subname">Name:</label></td>
+                                <td><input type="text" id="subname" class="form-control "
+                                           th:placeholder="${network.subName}" th:field="*{subName}"/></td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <label for="image">Upload logo</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-4 logo" id="logo" th:if="${network.logo!=null}">
+                                        <img class="img-zoom"
+                                             th:with="maurl = @{'/data/image/small/mall/'+${network.name}+'/logo'}"
+                                             id="smallimage"
+                                             alt="#"
+                                             th:src="${maurl}" src="#"
+                                        />
+                                    </div>
+                                    <div class="col-md-4" style="margin-left: 5px; margin-top: 5px;">
+                                        <input th:required="false" id="image" name="image"
+                                               class="file" type="file"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="secondImage">Upload background image</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-4" th:if="${network.getBackImage()!=null}">
+                                        <img class="img-zoom"
+                                             th:with="maurl = @{'/data/image/small/mall/'+${network.name}+'/back'}"
+                                             id="backImage"
+                                             alt="#"
+                                             th:src="${maurl}" src="#"
+                                        />
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input th:required="false" id="secondImage" name="backImage" class="input-file"
+                                               type="file"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="color_bg">Background Color:</label></td>
+                                <td><input type="text" id="color_bg"
+                                           class="form-control "
+                                           th:placeholder="${network.color}" th:field="*{color}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="email">Email:</label></td>
+                                <td>
+                                    <input type="email" id="email"
+                                           class="form-control "
+                                           th:placeholder="${network.email}" th:field="*{email}"/></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td><label for="status">Status:</label></td>
+                                <td><select id="status" class="col-sm-6" th:field="${network.status}">
+                                    <option th:value="active">active</option>
+                                    <option th:value="delete">delete</option>
+                                </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label for="tel_name">Tel name:</label></td>
+                                <td><input type="text" id="tel_name" class="form-control "
+                                           th:placeholder="${network.phoneTitle}" th:field="*{phoneTitle}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="tel_number">Tel number:</label></td>
+                                <td><input type="text" id="tel_number"
+                                           class="form-control "
+                                           th:placeholder="${network.phone}" th:field="*{phone}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="url">Url:</label></td>
+                                <td><input type="text" id="url"
+                                           class="form-control "
+                                           th:placeholder="${network.url}" th:field="*{url}"/>
+                                </td>
+                            </tr>
+                            <!--Adress block-->
+
+
+                            <tr>
+                                <td><label for="countrys">Country:</label></td>
+                                <td id="countrys">
+                                    <select class="col-sm-6" th:field="*{country}">
+                                        <option class="col-sm-6" th:each="country : ${countrys}"
+                                                th:value="${country.getId()}"
+                                                th:text="${country.getNameRu()}"
+                                                data-th-required="true">
+                                        </option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Save"
+                                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

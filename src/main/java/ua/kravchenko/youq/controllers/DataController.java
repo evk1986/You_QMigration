@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ua.kravchenko.youq.entity.Ds;
 import ua.kravchenko.youq.entity.GenericResponse;
 import ua.kravchenko.youq.entity.ShopMall;
+import ua.kravchenko.youq.entity.ShopNetwork;
 import ua.kravchenko.youq.services.DsService;
 import ua.kravchenko.youq.services.ShopMallService;
+import ua.kravchenko.youq.services.ShopNetworkService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -38,6 +40,9 @@ public class DataController {
 
     @Autowired
     ShopMallService smService;
+
+    @Autowired
+    ShopNetworkService networkService;
 
     @ResponseBody()
     @RequestMapping(value = "/image/small/{name}", method = RequestMethod.GET)
@@ -112,6 +117,45 @@ public class DataController {
         data.setDate(Date.valueOf(String.valueOf(currentDs.getCreatedDate())));
         System.out.println(data.toString());
         return data;
+    }
+
+    @ResponseBody()
+    @RequestMapping(value = "/image/small/network/{name}/logo", method = RequestMethod.GET)
+    public byte[] getNetworkLogo(@PathVariable("name") String name,
+                           Model model) throws Exception {
+        System.out.println("getting image");
+        Api api = cloudinary.api();
+        ShopNetwork ds = networkService.findByName(name);
+        System.out.println("api resource: " + api.resource(ds.getLogo(), ObjectUtils.emptyMap()));
+        JSONObject object = new JSONObject(api.resource(ds.getLogo(), ObjectUtils.emptyMap()));
+        JSONArray apiResourceCloudinary = new JSONArray();
+        apiResourceCloudinary = object.getJSONArray("derived");
+        System.out.println("logo" + apiResourceCloudinary);
+        String url = null;
+        for (int i = 0; i < apiResourceCloudinary.length(); i++) {
+            JSONObject jBuffer = apiResourceCloudinary.getJSONObject(i);
+            System.out.println("JbUFFER = " + jBuffer.toString());
+            url = jBuffer.getString("url");
+            System.out.println(url);
+        }
+        URL myTransformedUrlImage = new URL(url);
+
+        return downloadDataFromUrl(myTransformedUrlImage);
+    }
+
+    @ResponseBody()
+    @RequestMapping(value = "/image/small/network/{name}/back", method = RequestMethod.GET)
+    public byte[] getNetworkBackImage(@PathVariable("name") String name,
+                               Model model) throws Exception {
+        Api api = cloudinary.api();
+        ShopNetwork ds = networkService.findByName(name);
+        System.out.println("api resource: " + api.resource(ds.getBackImage(), ObjectUtils.emptyMap()));
+        JSONObject object = new JSONObject(api.resource(ds.getBackImage(), ObjectUtils.emptyMap()));
+        JSONArray apiResourceCloudinary = new JSONArray();
+        String url = (String) object.get("url");
+        System.out.println("object to String" + object.toString());
+        URL myTransformedUrlImage = new URL(url);
+        return downloadDataFromUrl(myTransformedUrlImage);
     }
 
     /**
