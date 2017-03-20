@@ -95,7 +95,7 @@ public class ShopNetworkController {
         return "network_view_all";
     }
 
-
+    /*Delete shop network*/
     @RequestMapping(value = "/viewall/delete/{id}", method = RequestMethod.DELETE)
     public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
         service.delete(id);
