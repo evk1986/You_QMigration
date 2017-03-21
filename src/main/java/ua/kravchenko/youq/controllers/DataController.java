@@ -76,7 +76,6 @@ public class DataController {
                            Model model) throws Exception {
         Api api = cloudinary.api();
         ShopMall ds = smService.findByName(name);
-        System.out.println("api resource: " + api.resource(ds.getImg(), ObjectUtils.emptyMap()));
         JSONObject object = new JSONObject(api.resource(ds.getImg(), ObjectUtils.emptyMap()));
         JSONArray apiResourceCloudinary = new JSONArray();
         apiResourceCloudinary = object.getJSONArray("derived");
@@ -122,7 +121,7 @@ public class DataController {
     @ResponseBody()
     @RequestMapping(value = "/image/small/network/{name}/logo", method = RequestMethod.GET)
     public byte[] getNetworkLogo(@PathVariable("name") String name,
-                           Model model) throws Exception {
+                                 Model model) throws Exception {
         System.out.println("getting image");
         Api api = cloudinary.api();
         ShopNetwork ds = networkService.findByName(name);
@@ -146,7 +145,7 @@ public class DataController {
     @ResponseBody()
     @RequestMapping(value = "/image/small/network/{name}/back", method = RequestMethod.GET)
     public byte[] getNetworkBackImage(@PathVariable("name") String name,
-                               Model model) throws Exception {
+                                      Model model) throws Exception {
         Api api = cloudinary.api();
         ShopNetwork ds = networkService.findByName(name);
         System.out.println("api resource: " + api.resource(ds.getBackImage(), ObjectUtils.emptyMap()));
