@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <tbody class="list">
                         <tr th:each="i : ${networks}">
                             <td th:text="${i.id}"></td>
-                            <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/network-info/'+${i.name}}"
+                            <td><a th:href="@{${#httpServletRequest.getRequestURL()}+'/info/'+${i.name}}"
                                    th:text="${i.name}"></a></td>
                             <td th:text="${i.subName}"></td>
                             <td th:text="${i.url}"></td>

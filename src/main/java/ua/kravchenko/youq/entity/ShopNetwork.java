@@ -6,7 +6,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by Егор on 17.03.2017.
@@ -52,12 +51,12 @@ public class ShopNetwork {
 
     @Column
     @CreatedDate
-    private Date created;
+    private Long created;
 
 
     @Column
     @LastModifiedDate
-    private Date modified;
+    private Long modified;
 
     @JoinColumn(name = "country")
     @ManyToOne(fetch = FetchType.EAGER)
@@ -154,19 +153,19 @@ public class ShopNetwork {
         this.logo = logo;
     }
 
-    public Date getCreated() {
+    public Long getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Long created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public Long getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(Long modified) {
         this.modified = modified;
     }
 

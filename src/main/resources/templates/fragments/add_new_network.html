@@ -59,7 +59,7 @@ border-right: none;">
                                 <td>
                                     <div class="col-md-4 logo" id="logo" th:if="${network.logo!=null}">
                                         <img class="img-zoom"
-                                             th:with="maurl = @{'/data/image/small/mall/'+${network.name}+'/logo'}"
+                                             th:with="maurl = @{'/data/image/small/network/'+${network.name}+'/logo'}"
                                              id="smallimage"
                                              alt="#"
                                              th:src="${maurl}" src="#"
@@ -78,7 +78,7 @@ border-right: none;">
                                 <td>
                                     <div class="col-md-4" th:if="${network.getBackImage()!=null}">
                                         <img class="img-zoom"
-                                             th:with="maurl = @{'/data/image/small/mall/'+${network.name}+'/back'}"
+                                             th:with="maurl = @{'/data/image/small/network/'+${network.name}+'/back'}"
                                              id="backImage"
                                              alt="#"
                                              th:src="${maurl}" src="#"
@@ -151,17 +151,26 @@ border-right: none;">
                                 </td>
 
                             </tr>
-                            <!-- <tr>
-                                 <td>
 
-                                 </td>
-                             </tr>-->
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Save"
+                                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                                </td>
+                                <td>
+                                    <a th:href="@{/shop-networks/viewall}">
+                                        <input type="button" th:value="Back"
+                                               class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+                                    </a>
+
+                                </td>
+                            </tr>
+
                             </tbody>
 
                         </table>
                     </fieldset>
-                    <input type="submit" value="Save"
-                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
+
                 </form>
             </div>
 

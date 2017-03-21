@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<!--/*@thymesVar id="network" type="ua.kravchenko.youq.entity.ShopNetwork"*/-->
+<div class="container" th:fragment="info">
+    <div class="w3-card-24 w3-border w3-margin">
+        <div class="panel panel-info">
+            <div class="w3-row">
+                <div class="col-md-5  toppad  pull-right col-md-offset-3 w3-padding">
+                    <p class=" text-info pull-right"
+                       th:text="${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}"
+                       th:inline="text"></p>
+                </div>
+                <div class="panel-heading w3-border">
+                    <h3 class="panel-title" style="font-weight: bold; text-transform: capitalize;" th:inline="text"
+                        th:text="${network.name}">
+                        <!--[[${#httpServletRequest.remoteUser}]]--></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row" style="display: inline;">
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr></tr>
+                            <tr></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>Name:</th>
+                                <td th:text="*{network.name}"></td>
+                            </tr>
+                            <tr>
+                                <th>Subname:</th>
+
+                                <td th:text="*{network.subName}"></td>
+                            </tr>
+                            <tr>
+                                <th>Url</th>
+                                <td th:text="*{network.url}"></td>
+                            </tr>
+
+                            <tr>
+                            <tr>
+                                <th><p>Country</p></th>
+                                <td th:text="*{network.country}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><p style="display:inline-block;">Logo: </p></th>
+                                <td>
+                                    <img th:with="maurl = @{'/data/image/small/network/'+${network.name}+'/logo'}"
+                                         alt="#"
+                                         id="logo"
+                                         th:src="${maurl}" src="#"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td th:text="*{network.status}"></td>
+                            </tr>
+                            <tr>
+                                <th>Phone title</th>
+                                <td th:text="*{network.phoneTitle}"></td>
+                            </tr>
+                            <tr>
+                                <th>Phone #</th>
+                                <td th:text="*{network.phone}"></td>
+                            </tr>
+                            <tr>
+                                <th>Color</th>
+                                <td th:text="*{network.color}"></td>
+                            </tr>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-right">
+                            <a href="#" th:href="@{'/shop-networks/edit/'+ ${network.name}}"
+                               data-original-title="Edit this user" data-toggle="tooltip" type="button"
+                               class="w3-btn w3-hover-purple w3-white w3-border center-block w3-margin">Edit profile</a>
+
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
