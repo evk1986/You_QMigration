@@ -179,13 +179,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
                         <script th:inline="javascript">
                             var options = {
-                                valueNames: ['name', 'title', 'url', '', ''],
-                                page: 5,
+                                valueNames: ['id', 'name', 'url', 'subname', 'back_image', 'color',
+                                    'logo', 'phone', 'phone_title', 'subname'],
+                                page: 15,
                                 plugins: [
                                     ListPagination({})
                                 ]
                             };
-                            var dslist = new List('ds', options);
+                            var networksList = new List('ds', options);
                         </script>
                     </table>
 

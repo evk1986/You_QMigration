@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             </div>
             <!-- <div class="content-top" id="content">-->
-            <div id="country" class="w3-margin" style="background-color: white; border-color: #c7ddef">
+            <div id="category" class="w3-margin" style="background-color: white; border-color: #c7ddef">
                 <legend align="center">Categories</legend>
                 <table id="countrys" align="center" class="table table-striped">
                     <thead>
@@ -147,12 +147,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <script th:inline="javascript">
                         var options = {
                             valueNames: ['id', 'nameRu', 'nameEn', 'region', 'controls'],
-                            page: 5,
+                            page: 15,
                             plugins: [
                                 ListPagination({})
                             ]
                         };
-                        var countryList = new List('country', options);
+                        var categoryList = new List('category', options);
                     </script>
                 </table>
 

@@ -6,9 +6,7 @@
     <groupId>ua.kravchenko</groupId>
     <artifactId>you_qmigration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <countryName>You_QMigration</countryName>
+    <packaging>war</packaging>
     <description></description>
 
     <parent>

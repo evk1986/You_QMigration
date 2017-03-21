@@ -70,9 +70,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 
     <div id="page-wrapper" class="dashbard-1">
-        <div class="content-main">
+        <div class="w3-container">
             <!--banner-->
-            <div class="banner">
+            <div class="banner content-header">
                 <h2>
                     <a href="index.html">Home</a>
                     <i class="fa fa-angle-right"></i>
@@ -85,65 +85,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             </div>
             <!-- <div class="content-top" id="content">-->
-            <div id="region" class="w3-margin" style="background-color: white; border-color: #c7ddef">
-                <legend align="center">Regions</legend>
-                <table id="regions" align="center" class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Country</th>
-                        <th>Name Ru</th>
-                        <th>Name En</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
-                    <tbody class="list">
-                    <tr th:each="region : ${regions}">
-                        <td th:text="${region.id}"></td>
-                        <td th:text="${region.country}"></td>
-                        <td th:text="${region.nameRu}"></td>
-                        <td th:text="${region.nameEn}"></td>
-                        <td>
-                            <p th:text="${region.id}"></p>
-                            <form id="form" name="form" th:action="@{'/region/edit/'+${region.id}}"
-                                  method="get" th:method="get" th:object="${region}">
-                                <div class="text-center pull-left">
-                                    <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
-                                            th:id="edit">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <ul class="pagination center-block ">
-                        <li><a href="#">«</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                    <script src="http://listjs.com/assets/javascripts/list.min.js"
-                            th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
-                    <script th:inline="javascript">
-                        var options = {
-                            valueNames: ['id', 'country', 'name ru', 'name en', ''],
-                            page: 5,
-                            plugins: [
-                                ListPagination({})
-                            ]
-                        };
-                        var regionList = new List('regions', options);
-                    </script>
-                </table>
+            <div class="w3-row">
+                <div id="region" class="w3-margin" style="background-color: white; border-color: #c7ddef">
+                    <legend align="center">Regions</legend>
+                    <table id="regions" align="center" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Country</th>
+                            <th>Name Ru</th>
+                            <th>Name En</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <!--/*@thymesVar id="regions" type="java.util.List<ua.kravchenko.youq.entity.Region>"*/-->
+                        <tbody class="list">
+                        <tr th:each="region : ${regions}">
+                            <td th:text="${region.id}"></td>
+                            <td th:text="${region.country}"></td>
+                            <td th:text="${region.nameRu}"></td>
+                            <td th:text="${region.nameEn}"></td>
+                            <td>
+                                <form id="form" name="form" th:action="@{'/region/edit/'+${region.id}}"
+                                      method="get" th:method="get" th:object="${region}">
+                                    <div class="text-center pull-left">
+                                        <button class="w3-btn w3-hover-purple w3-white w3-border center-block w3-round-large"
+                                                th:id="edit">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <ul class="pagination center-block ">
+                            <li><a href="#">«</a></li>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                        <script src="http://listjs.com/assets/javascripts/list.min.js"
+                                th:src="@{'http://listjs.com/assets/javascripts/list.min.js'}"></script>
+                        <script th:inline="javascript">
+                            var options = {
+                                valueNames: ['id', 'country', 'name ru', 'name en', ''],
+                                page: 15,
+                                plugins: [
+                                    ListPagination({})
+                                ]
+                            };
+                            var regionList = new List('region', options);
+                        </script>
+                    </table>
 
+                </div>
             </div>
+
         </div>
     </div>
     <div class="copy">

@@ -38,12 +38,12 @@ border-right: none;">
                         <legend th:align="center" class="panel-title"
                                 style="font-weight: bold; text-transform: capitalize;">Add new shopnetwork
                         </legend>
-                        <table class="table">
+                        <table class="table table-striped">
                             <tbody>
                             <tr>
                                 <td><label for="name">Name:</label></td>
                                 <td><input type="text" id="name" class="form-control"
-                                       th:field="*{name}"/></td>
+                                           th:field="*{name}"/></td>
                             </tr>
                             <tr>
                                 <td><label for="subname">Name:</label></td>
@@ -151,15 +151,17 @@ border-right: none;">
                                 </td>
 
                             </tr>
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Save"
-                                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-                                </td>
-                            </tr>
+                            <!-- <tr>
+                                 <td>
+
+                                 </td>
+                             </tr>-->
                             </tbody>
+
                         </table>
                     </fieldset>
+                    <input type="submit" value="Save"
+                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
                 </form>
             </div>
 

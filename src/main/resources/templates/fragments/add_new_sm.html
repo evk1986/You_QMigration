@@ -7,11 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script th:inline="javascript">
 
-        $(document).ready(function(){
-            $('.img-zoom').hover(function() {
+        $(document).ready(function () {
+            $('.img-zoom').hover(function () {
                 $(this).addClass('transition');
 
-            }, function() {
+            }, function () {
                 $(this).removeClass('transition');
             });
         });
@@ -38,9 +38,9 @@
 border-right: none;">
                         <legend th:align="center" class="panel-title"
                                 style="font-weight: bold; text-transform: capitalize;">Add new
-                            discount-system
+                            shopmall
                         </legend>
-                        <table class="table">
+                        <table class="table table-striped">
                             <tbody>
                             <tr>
                                 <td><label for="name">Name:</label></td>
@@ -67,8 +67,9 @@ border-right: none;">
                                     <label for="image">Upload logo</label>
                                 </td>
                                 <td>
-                                    <div class="col-md-4 logo"  id="logo" th:if="${sm.img!=null}">
-                                        <img class="img-zoom" th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/logo'}"
+                                    <div class="col-md-4 logo" id="logo" th:if="${sm.img!=null}">
+                                        <img class="img-zoom"
+                                             th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/logo'}"
                                              id="smallimage"
                                              alt="#"
                                              th:src="${maurl}" src="#"
@@ -86,7 +87,8 @@ border-right: none;">
                                 </td>
                                 <td>
                                     <div class="col-md-4" th:if="${sm.backImage!=null}">
-                                        <img class="img-zoom" th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/back'}"
+                                        <img class="img-zoom"
+                                             th:with="maurl = @{'/data/image/small/mall/'+${sm.name}+'/back'}"
                                              id="backImage"
                                              alt="#"
                                              th:src="${maurl}" src="#"
@@ -259,27 +261,16 @@ border-right: none;">
 
                             </th:block>
 
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Save"
-                                           class="w3-btn w3-hover-green w3-white w3-border center-block"/>
-                                </td>
-                            </tr>
+                            <!--  <tr>
+                                  <td>
+
+                                  </td>
+                              </tr>-->
                             </tbody>
                         </table>
+                        <input type="submit" value="Save"
+                               class="w3-btn w3-hover-green w3-white w3-border center-block"/>
                     </fieldset>
-                    <!--<div class="row">
-                        <div class="col-md-9 col-lg-9">-->
-
-
-                    <!-- <div class="col-sm-6">
-                         <input href="#" type="reset" value="Cancel"
-                                class="w3-btn w3-hover-red w3-white w3-border center-block"/>
-                     </div>-->
-                    <!-- </div>
-
-                 </div>-->
-
                 </form>
             </div>
 

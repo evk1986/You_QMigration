@@ -89,7 +89,7 @@ public class RegionController {
         System.out.println(regionModel);
         List<Region> regions = regionService.findAll();
         model.addAttribute("regions", regions);
-        return "region_view_all";
+        return "redirect:/region/viewall";
 
     }
 
