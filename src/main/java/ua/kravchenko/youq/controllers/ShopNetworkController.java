@@ -53,12 +53,12 @@ public class ShopNetworkController {
     }
 
     @RequestMapping(value = "/save-network", method = RequestMethod.PUT)
-    public String saveMyDs(@ModelAttribute(value = "network")
-                                   ShopNetwork shopNetwork, BindingResult bindingResult,
-                           Model model,
-                           HttpServletRequest req,
-                           @RequestPart("image") MultipartFile file,
-                           @RequestPart("backImage") MultipartFile secondImage) throws IOException {
+    public String saveEntity(@ModelAttribute(value = "network")
+                                     ShopNetwork shopNetwork, BindingResult bindingResult,
+                             Model model,
+                             HttpServletRequest req,
+                             @RequestPart("image") MultipartFile file,
+                             @RequestPart("backImage") MultipartFile secondImage) throws IOException {
         ShopNetwork shopNetworkModel;
         if (service.findByName(shopNetwork.getName()) != null) {
             shopNetworkModel = service.findByName(shopNetwork.getName());
@@ -100,6 +100,13 @@ public class ShopNetworkController {
     public String deleteDs(Model model, @PathVariable("id") Long id, HttpServletRequest req) {
         service.delete(id);
         return "redirect:" + req.getContextPath() + "/shop-networks/viewall";
+    }
+
+    @RequestMapping(value = "/viewall/info/{name}", method = RequestMethod.GET)
+    public String infoView(Model model, @PathVariable("name") String name, HttpServletRequest req) {
+        ShopNetwork network = service.findByName(name);
+        model.addAttribute("network", network);
+        return "network_info";
     }
 
 }
